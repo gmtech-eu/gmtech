@@ -59,7 +59,7 @@
           on:click={() => goToImage(index)}
           class="size-2 rounded-full transition-all {currentIndex === index ? 'w-8 bg-teal-600' : 'bg-slate-300 hover:bg-slate-400'}"
           aria-label="Go to image {index + 1}"
-        />
+        ></button>
       {/each}
     </div>
   {/if}
