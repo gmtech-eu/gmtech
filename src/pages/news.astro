@@ -63,11 +63,44 @@ const schema: WithContext<Thing> = {
         </div>
       </div>
 
-      {/* Placeholder for LinkedIn Feed */}
+      {/* LinkedIn Feed Widget - Ready for integration */}
       <div class="mt-12">
-        <p class="text-center text-sm text-slate-500">
-          LinkedIn feed integration can be implemented using LinkedIn's embedded feed widget or API.
-        </p>
+        <div class="rounded-2xl bg-white p-6 ring-1 ring-slate-200">
+          <div class="text-center">
+            <h3 class="text-lg font-semibold text-slate-800 mb-4">Latest LinkedIn Updates</h3>
+            <div id="linkedin-feed-widget" class="min-h-[400px] flex items-center justify-center">
+              <div class="text-slate-500">
+                <div class="mb-4">
+                  <Icon name="linkedin" class="size-12 mx-auto text-teal-600" />
+                </div>
+                <p class="text-sm mb-2">Ready for LinkedIn feed integration</p>
+                <p class="text-xs">Choose from: Elfsight, Juicer.io, or EmbedSocial</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Implementation comment for developers */}
+        <!-- 
+        LinkedIn Feed Integration Options:
+        
+        1. Elfsight (Recommended): 
+           - Sign up at elfsight.com
+           - Generate LinkedIn widget
+           - Replace the content in #linkedin-feed-widget with the generated code
+        
+        2. Juicer.io:
+           - Create account at juicer.io  
+           - Connect LinkedIn company page
+           - Use provided embed code
+        
+        3. EmbedSocial:
+           - Setup at embedsocial.com
+           - Configure LinkedIn feed widget
+           - Embed the widget code
+        
+        All options provide real-time updates and customization.
+        -->
       </div>
     </div>
   </section>
