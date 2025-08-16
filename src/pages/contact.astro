@@ -1,193 +1,140 @@
 ---
-import BaseLayout from "@layout/BaseLayout.astro";
-import Icon from "@ui/icons/Icon.astro";
-import ContactForm from "@ui/forms/ContactForm.astro";
-import type { WithContext, Thing } from "schema-dts";
+import BaseLayout from '@layout/BaseLayout.astro';
+import Icon from '@ui/icons/Icon.astro';
+import type { Thing, WithContext } from 'schema-dts';
 
-const addressHeading = "France Office:";
-const emailHeading = "Italy Office:";
-const linkedInHeading = "Follow us";
-
-const contactDetailsFrance = {
-  name: "Arnaud DUHAMEL",
-  title: "Responsable bureau France",
-  phone: "+33 06 12 34 56 78",
-  email: "arnaud.duhamel@gmtec.eu",
-};
-
-const contactDetailsItaly = {
-  name: "Agostino CURATOLO",
-  title: "Responsable bureau Italie",
-  phone: "+39 06 98 76 54 32",
-  email: "agostino.curatolo@gmtec.eu",
-};
-
-const linkedInDetails = {
-  description: "Stay connected with us on LinkedIn for the latest updates.",
-  linkText: "Visit our LinkedIn page",
-  linkUrl: "https://www.linkedin.com/company/gmtec-group",
-};
+const contacts = [
+  {
+    id: 'france',
+    office: 'France Office',
+    name: 'Arnaud DUHAMEL',
+    title: 'Responsable bureau France',
+    phone: '+33 6 12 34 56 78',
+    email: 'arnaud.duhamel@gmtec.eu',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Arnaud+Duhamel&background=5aaeae&color=fff&size=200',
+  },
+  {
+    id: 'italy',
+    office: 'Italy Office',
+    name: 'Agostino CURATOLO',
+    title: 'Responsable bureau Italie',
+    phone: '+39 6 98 76 54 32',
+    email: 'agostino.curatolo@gmtec.eu',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Agostino+Curatolo&background=087f7f&color=fff&size=200',
+  },
+];
 
 // Content for the page title and subtitle
-const title = "Contact us";
-const subTitle = "Get in touch with our experts in France and Italy.";
+const title = 'Contact us';
+const subTitle =
+  "Get in touch with our experts in France and Italy. We're here to help you navigate the automotive industry.";
 
 // SEO metadata for the page
 const seo = {
-  title: "Contact - GMTEC",
+  title: 'Contact - GMTEC',
   description:
-    "Contact GMTEC Group for automotive consulting services. Reach our experts in France and Italy for business development support.",
+    'Contact GMTEC Group for automotive consulting services. Reach our experts in France and Italy for business development support.',
 };
 
 // Schema.org metadata for SEO
 const schema: WithContext<Thing> = {
-  "@context": "https://schema.org",
-  "@type": "ContactPage",
-  inLanguage: "en-US",
-  "@id": Astro.url.href,
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  inLanguage: 'en-US',
+  '@id': Astro.url.href,
   url: Astro.url.href,
-  name: "Contact GMTEC",
+  name: 'Contact GMTEC',
   description:
-    "Contact GMTEC Group for automotive consulting and business development services. Our teams in France and Italy are ready to support your projects.",
+    'Contact GMTEC Group for automotive consulting and business development services. Our teams in France and Italy are ready to support your projects.',
   isPartOf: {
-    "@type": "WebSite",
+    '@type': 'WebSite',
     url: `${Astro.site}`,
-    name: "GMTEC",
-    description:
-      "GMTEC Group is a consulting company providing expertise in the Automotive sector since 2003.",
+    name: 'GMTEC',
+    description: 'GMTEC Group is a consulting company providing expertise in the Automotive sector since 2003.',
   },
 };
 ---
 
 <BaseLayout seo={seo} schema={schema}>
-  <div class="mx-auto max-w-[85rem] px-4 pb-28 pt-48 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-[85rem] px-4 pt-48 pb-28 sm:px-6 lg:px-8">
     <div class="mb-10 max-w-3xl lg:mb-14">
-      <h2
-        class="text-balance text-4xl text-slate-800 sm:text-5xl md:text-6xl lg:text-7xl"
-      >
+      <h2 class="text-4xl text-balance text-slate-800 sm:text-5xl md:text-6xl lg:text-7xl">
         {title}
       </h2>
-      <p class="ml-1 mt-1 text-slate-600">{subTitle}</p>
+      <p class="mt-1 ml-1 text-slate-600">{subTitle}</p>
     </div>
 
-    <div class="grid grid-cols-1 gap-x-10 md:grid-cols-2 lg:gap-x-16">
-      <div
-        class="mb-10 rounded-xl bg-teal-400 pb-10 md:order-2 md:mb-0 md:pb-0"
-      >
-        <ContactForm />
-      </div>
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12">
+      {
+        contacts.map((contact) => (
+          <div class="group relative rounded-3xl bg-linear-to-br/oklch from-teal-100 via-transparent to-white p-8 ring-1 ring-slate-200 transition-all duration-300 hover:shadow-xl">
+            <div class="flex items-start gap-6">
+              {/* Avatar */}
+              <img
+                src={contact.avatarUrl}
+                alt={contact.name}
+                class="size-20 shrink-0 rounded-full shadow-lg ring-4 ring-white"
+              />
 
-      <div class="space-y-14">
-        <div class="flex gap-x-5">
-          <Icon name="mapPin" />
-          <div class="grow">
-            <h4 class="font-semibold text-slate-600">{addressHeading}</h4>
-            <p class="mt-1 font-medium text-slate-700">{contactDetailsFrance.name}</p>
-            <p class="text-sm text-slate-600">{contactDetailsFrance.title}</p>
-            <a
-              class="mt-2 block text-sm text-slate-500 transition-colors duration-300 hover:text-slate-400 focus:text-slate-400 focus:outline-hidden"
-              href={`mailto:${contactDetailsFrance.email}`}
-            >
-              {contactDetailsFrance.email}
-            </a>
-            <a
-              class="mt-1 block text-sm text-slate-500 transition-colors duration-300 hover:text-slate-400 focus:text-slate-400 focus:outline-hidden"
-              href={`tel:${contactDetailsFrance.phone}`}
-            >
-              {contactDetailsFrance.phone}
-            </a>
-          </div>
-        </div>
+              {/* Contact Details */}
+              <div class="flex-1">
+                <h3 class="text-xl font-semibold text-slate-800">{contact.office}</h3>
+                <p class="mt-2 text-lg font-medium text-slate-700">{contact.name}</p>
+                <p class="text-sm text-slate-600">{contact.title}</p>
 
-        <div class="flex gap-x-5">
-          <Icon name="mapPin" class="size-6 shrink-0 text-slate-600" />
-          <div class="grow">
-            <h4 class="font-semibold text-slate-600">{emailHeading}</h4>
-            <p class="mt-1 font-medium text-slate-700">{contactDetailsItaly.name}</p>
-            <p class="text-sm text-slate-600">{contactDetailsItaly.title}</p>
-            <a
-              class="mt-2 block text-sm text-slate-500 transition-colors duration-300 hover:text-slate-400 focus:text-slate-400 focus:outline-hidden"
-              href={`mailto:${contactDetailsItaly.email}`}
-            >
-              {contactDetailsItaly.email}
-            </a>
-            <a
-              class="mt-1 block text-sm text-slate-500 transition-colors duration-300 hover:text-slate-400 focus:text-slate-400 focus:outline-hidden"
-              href={`tel:${contactDetailsItaly.phone}`}
-            >
-              {contactDetailsItaly.phone}
-            </a>
-          </div>
-        </div>
+                <div class="mt-4 space-y-2">
+                  <a
+                    href={`mailto:${contact.email}`}
+                    class="group/email inline-flex items-center gap-2 text-sm text-slate-600 transition-all duration-300 hover:text-teal-600"
+                  >
+                    <Icon name="email" class="size-4" />
+                    <span class="underline decoration-slate-300 underline-offset-2 transition-all group-hover/email:decoration-teal-600">
+                      {contact.email}
+                    </span>
+                  </a>
 
-        <div class="flex gap-x-5">
-          <Icon name="linkedin" class="size-6 shrink-0 text-slate-600" />
-          <div class="grow">
-            <h4 class="font-semibold text-slate-600">{linkedInHeading}</h4>
-            <p class="mt-1 text-sm text-slate-500">
-              {linkedInDetails.description}
-            </p>
-            <p class="mt-2">
-              <a
-                class="group inline-flex items-center gap-x-2 text-sm font-medium text-slate-600 decoration-2 transition duration-300 hover:underline focus:underline focus:outline-hidden"
-                href={linkedInDetails.linkUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {linkedInDetails.linkText}
-                <Icon name="externalLink" />
-              </a>
-            </p>
+                  <a
+                    href={`tel:${contact.phone}`}
+                    class="group/phone flex items-center gap-2 text-sm text-slate-600 transition-all duration-300 hover:text-teal-600"
+                  >
+                    <Icon name="mobile" class="size-4" />
+                    <span>{contact.phone}</span>
+                  </a>
+                </div>
+
+                {/* CTA Button */}
+                <a
+                  href={`mailto:${contact.email}?subject=Business Development Inquiry`}
+                  class="mt-6 inline-flex items-center rounded-xl bg-teal-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition-all duration-150 hover:bg-teal-700 focus:bg-teal-700 focus:outline-hidden"
+                >
+                  Send an email
+                  <Icon name="chevronRight" class="ml-2 size-4" />
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
+        ))
+      }
+    </div>
+
+    {/* LinkedIn Section */}
+    <div class="mt-16 text-center">
+      <div class="mx-auto max-w-2xl rounded-3xl bg-teal-200 p-8 sm:p-12">
+        <Icon name="linkedin" class="mx-auto size-12 text-teal-700" />
+        <h3 class="mt-4 text-2xl font-semibold text-slate-800">Stay Connected</h3>
+        <p class="mt-2 text-slate-700">
+          Follow us on LinkedIn for the latest automotive industry insights and company updates.
+        </p>
+        <a
+          href="https://www.linkedin.com/company/gmtec-group"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-6 inline-flex items-center rounded-xl bg-teal-600 px-6 py-3 text-base font-medium text-white shadow-sm transition-all duration-150 hover:bg-teal-700 focus:bg-teal-700 focus:outline-hidden"
+        >
+          Visit our LinkedIn page
+          <Icon name="externalLink" class="ml-2 size-5" />
+        </a>
       </div>
     </div>
   </div>
-
-  <script>
-    // Automatically adjusting the height of the textarea
-    // based on its content. Triggers when the textarea content changes.
-    document.addEventListener("astro:page-load", () => {
-      function textareaAutoHeight(
-        el: HTMLTextAreaElement,
-        offsetTop: number = 0,
-      ): void {
-        el.style.height = "auto";
-        el.style.height = `${el.scrollHeight + offsetTop}px`;
-      }
-
-      (() => {
-        const textareas: string[] = ["#input-message"];
-
-        textareas.forEach((selector) => {
-          const textarea = document.querySelector(
-            selector,
-          ) as HTMLTextAreaElement;
-
-          if (!textarea) return;
-
-          const overlay = textarea.closest(".hs-overlay");
-
-          if (overlay) {
-            const instance = (window as any).HSOverlay.getInstance(
-              overlay,
-              true,
-            );
-
-            if (instance) {
-              instance.element.on("open", () =>
-                textareaAutoHeight(textarea, 3),
-              );
-            }
-          } else {
-            textareaAutoHeight(textarea, 3);
-          }
-
-          textarea.addEventListener("input", () => {
-            textareaAutoHeight(textarea, 3);
-          });
-        });
-      })();
-    });
-  </script>
 </BaseLayout>
