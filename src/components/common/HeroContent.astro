@@ -1,0 +1,38 @@
+---
+import heroImage from '@images/hero-image.png';
+import Button from '@ui/Button.astro';
+import { Image } from 'astro:assets';
+const title = 'GMTEC Group';
+const subTitle = 'GMTEC Group is a consulting company providing expertise in the Automotive sector since 2003.';
+const secondaryCTA = { text: 'Check our blog', href: 'https://github.com/mearashadowfax/DataNova' };
+const primaryCTA = { text: 'Contact us', href: '/downloads/license-options' };
+---
+
+{/* Hero Content */}
+<div class="flex flex-col items-center gap-8 lg:flex-row lg:gap-12">
+  {/* Left side - Content */}
+  <div class="flex-1 space-y-6">
+    <div class="text-left">
+      <h1 class="block text-4xl text-balance text-slate-800 sm:text-5xl md:text-6xl lg:text-7xl">
+        {title}
+      </h1>
+    </div>
+
+    <div class="text-left">
+      <p class="text-lg text-pretty text-slate-700">
+        {subTitle}
+      </p>
+    </div>
+
+    {/* CTA Buttons */}
+    <div class="flex flex-col justify-start gap-5 sm:flex-row">
+      <Button href={secondaryCTA.href} variant="secondary" target="_blank">{secondaryCTA.text}</Button>
+      <Button href={primaryCTA.href} variant="primary">{primaryCTA.text}</Button>
+    </div>
+  </div>
+
+  {/* Right side - Image */}
+  <div class="flex flex-1 justify-center lg:justify-end">
+    <Image src={heroImage} alt="GMTEC Group" width={1000} height={1000} class="rounded-3xl" />
+  </div>
+</div>
