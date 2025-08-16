@@ -1,0 +1,145 @@
+---
+import BaseLayout from "@layout/BaseLayout.astro";
+import type { WithContext, Thing } from "schema-dts";
+import Icon from "@ui/icons/Icon.astro";
+
+// Data for the technologies sections
+const technologiesData = {
+  title: "Technologies",
+  description: "We work mainly in the fields of chassis and thermal management, but our know-how can be adapted to meet the many technical challenges posed by developments in the automotive industry.",
+  technologies: [
+    {
+      title: "Powertrain",
+      icon: "zap",
+      description: "Advanced powertrain solutions including electric and hybrid systems, engine optimization, and transmission technologies.",
+      features: [
+        "Electric and hybrid powertrains",
+        "Advanced combustion engines",
+        "Transmission systems",
+        "Energy management systems",
+      ],
+    },
+    {
+      title: "Chassis",
+      icon: "layers",
+      description: "Comprehensive chassis development including suspension systems, steering, and vehicle dynamics optimization.",
+      features: [
+        "Active suspension systems",
+        "Steering technologies",
+        "Braking systems",
+        "Vehicle dynamics control",
+      ],
+    },
+    {
+      title: "Interior Parts",
+      icon: "box",
+      description: "Interior components and systems focusing on comfort, safety, and user experience.",
+      features: [
+        "Seating systems",
+        "Dashboard and console components",
+        "Safety systems integration",
+        "Interior lighting solutions",
+      ],
+    },
+    {
+      title: "Thermal Management",
+      icon: "thermometer",
+      description: "Complete thermal management solutions for vehicle efficiency and comfort.",
+      features: [
+        "Battery thermal management",
+        "HVAC systems",
+        "Engine cooling systems",
+        "Heat recovery solutions",
+      ],
+    },
+  ],
+};
+
+// SEO metadata for the page
+const seo = {
+  title: "Technologies - GMTEC",
+  description: "Discover GMTEC's expertise in automotive technologies including powertrain, chassis, interior parts, and thermal management solutions.",
+};
+
+// Schema.org metadata for SEO
+const schema: WithContext<Thing> = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "inLanguage": "en-US",
+  "@id": Astro.url.href,
+  "url": Astro.url.href,
+  "name": "Technologies - GMTEC",
+  "description": "Explore GMTEC's comprehensive automotive technology expertise spanning powertrain, chassis, interior parts, and thermal management.",
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": `${Astro.site}`,
+    "name": "GMTEC",
+    "description": "GMTEC Group is a consulting company providing expertise in the Automotive sector since 2003.",
+  },
+};
+---
+
+<BaseLayout seo={seo} schema={schema}>
+  <section class="mx-auto max-w-[85rem] px-4 pb-12 pt-48 sm:px-6 lg:px-8">
+    <div class="max-w-7xl">
+      <div class="mx-auto max-w-3xl text-center lg:mb-14">
+        <h1 class="text-balance text-4xl text-slate-800 sm:text-5xl md:text-6xl lg:text-7xl">
+          {technologiesData.title}
+        </h1>
+        <p class="mt-8 text-pretty text-lg font-medium text-slate-700 sm:text-xl/8">
+          {technologiesData.description}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* Technologies Grid Section */}
+  <section class="mx-auto max-w-[85rem] px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+      {
+        technologiesData.technologies.map((tech, index) => (
+          <div class="group relative rounded-3xl bg-linear-to-br/oklch from-teal-100 via-transparent to-white p-8 ring-1 ring-slate-200 transition-all duration-300 hover:shadow-xl">
+            <div class="flex items-start gap-4">
+              <div class="flex size-12 shrink-0 items-center justify-center rounded-xl bg-teal-400 text-white">
+                <Icon name={tech.icon} class="size-6" />
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-semibold text-slate-800">{tech.title}</h3>
+                <p class="mt-2 text-slate-600">{tech.description}</p>
+                <ul class="mt-4 space-y-2">
+                  {tech.features.map((feature) => (
+                    <li class="flex items-start gap-2 text-sm text-slate-600">
+                      <Icon name="check" class="size-4 shrink-0 text-teal-600" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  {/* Call to Action Section */}
+  <section class="mx-auto max-w-[85rem] px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
+    <div class="relative rounded-3xl bg-teal-200 p-8 text-center sm:p-12">
+      <h2 class="text-balance text-2xl font-semibold text-slate-800 md:text-3xl">
+        Ready to discuss your project?
+      </h2>
+      <p class="mt-4 text-pretty text-lg text-slate-700">
+        Our team of experts is ready to help you navigate the complexities of automotive technology development.
+      </p>
+      <div class="mt-8">
+        <a
+          href="/contact"
+          class="inline-flex items-center rounded-xl bg-teal-600 px-6 py-3 text-base font-medium text-white shadow-sm transition-all duration-150 hover:bg-teal-700 focus:bg-teal-700 focus:outline-hidden"
+        >
+          Contact our experts
+          <Icon name="chevronRight" class="ml-2 size-5" />
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

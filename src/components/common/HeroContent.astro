@@ -2,10 +2,11 @@
 import heroImage from '@images/hero-image.png';
 import Button from '@ui/Button.astro';
 import { Image } from 'astro:assets';
-const title = 'GMTEC Group';
-const subTitle = 'GMTEC Group is a consulting company providing expertise in the Automotive sector since 2003.';
-const secondaryCTA = { text: 'Check our blog', href: 'https://github.com/mearashadowfax/DataNova' };
-const primaryCTA = { text: 'Contact us', href: '/downloads/license-options' };
+const title = 'Expertise in automotive consulting since 2003';
+const subTitle =
+  "We have been committed and focused, supporting our Principals mainly in the French and Italian markets, facilitating the growth of their Sales.";
+const secondaryCTA = { text: 'Learn about our mission', href: '/about' };
+const primaryCTA = { text: 'Contact us', href: '/contact' };
 ---
 
 {/* Hero Content */}
@@ -13,7 +14,7 @@ const primaryCTA = { text: 'Contact us', href: '/downloads/license-options' };
   {/* Left side - Content */}
   <div class="flex-1 space-y-6">
     <div class="text-left">
-      <h1 class="block text-4xl text-balance text-slate-800 sm:text-5xl md:text-6xl lg:text-7xl">
+      <h1 class="block text-3xl text-balance text-slate-800 sm:text-4xl md:text-5xl lg:text-6xl">
         {title}
       </h1>
     </div>
@@ -26,7 +27,7 @@ const primaryCTA = { text: 'Contact us', href: '/downloads/license-options' };
 
     {/* CTA Buttons */}
     <div class="flex flex-col justify-start gap-5 sm:flex-row">
-      <Button href={secondaryCTA.href} variant="secondary" target="_blank">{secondaryCTA.text}</Button>
+      <Button href={secondaryCTA.href} variant="secondary">{secondaryCTA.text}</Button>
       <Button href={primaryCTA.href} variant="primary">{primaryCTA.text}</Button>
     </div>
   </div>

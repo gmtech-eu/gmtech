@@ -4,51 +4,55 @@ import type { WithContext, Thing } from "schema-dts";
 
 // Data describing the "About" section content
 const aboutData = {
-  title: "DataNova,",
+  title: "Why outsource?",
   description:
-    "founded in 2018, is a leading provider of powerful analytics tools that transform your Excel workspace into a comprehensive analytics powerhouse, making data analysis accessible and actionable for businesses worldwide.",
+    "Entrusting your sales force to a specialized partner transforms fixed costs into variable costs, guarantees immediate access to seasoned sales people and frees up your in-house teams to focus on innovation and operations. You gain in flexibility, reduce your structural costs and get your offers to market faster.",
   statistics: [
     {
-      label: "Industry Sectors Served",
-      value: "15+",
+      label: "Years of Experience",
+      value: "20+",
     },
     {
-      label: "Data Points Processed",
-      value: "Billions",
+      label: "Countries Covered",
+      value: "5+",
     },
     {
-      label: "Custom Reports Generated",
-      value: "500,000+",
+      label: "Active Partners",
+      value: "50+",
+    },
+    {
+      label: "Projects Delivered",
+      value: "500+",
     },
   ],
 };
 
 // Data describing the expertise section
 const expertiseData = {
-  title: "Our Expertise:",
+  title: "Major Advantages:",
   expertise: [
     {
-      title: "AI-Powered Insights:",
+      title: "Multi-channel prospecting",
       description:
-        "Uncover deep insights and predict trends with advanced AI algorithms for proactive decision-making.",
+        "In-depth lead qualification, event-driven acceleration plans, contract negotiation and conclusion, key account follow-up and opening of new territories.",
     },
     {
-      title: "Real-Time Data Visualization:",
+      title: "Reduced sales costs",
       description:
-        "Transform data into interactive visuals, tracking key metrics in real-time for actionable insights.",
+        "Instant adaptation of resources to market fluctuations, access to experienced talent without recruitment delays, and operational deployment in a matter of weeks.",
     },
     {
-      title: "Predictive Analytics Engine:",
+      title: "When is it relevant?",
       description:
-        "Leverage machine learning to forecast trends and identify opportunities, staying ahead of the curve.",
+        "SMEs lacking time, budget or expertise. Technology companies needing to convert innovation into sales. Companies in export or expansion phase. Established groups benchmarking internal performance.",
     },
   ],
 };
 
 // SEO metadata for the page
 const seo = {
-  title: "About DataNova",
-  description: "Learn more about DataNova, the analytics platform that transforms your Excel data with advanced insights and predictive models.",
+  title: "Group - GMTEC",
+  description: "GMTEC Group - Your specialized partner for automotive business development in Europe. Transform fixed costs into variable costs with our experienced sales force.",
 };
 
 // Schema.org metadata for SEO
@@ -58,13 +62,13 @@ const schema: WithContext<Thing> = {
   "inLanguage": "en-US",
   "@id": Astro.url.href,
   "url": Astro.url.href,
-  "name": "About DataNova",
-  "description": "Get to know DataNova, the powerful analytics platform for Excel that enables businesses to make data-driven decisions quickly with no coding required.",
+  "name": "Group - GMTEC",
+  "description": "Learn about GMTEC Group's approach to automotive business development and why outsourcing your sales force can transform your business.",
   "isPartOf": {
     "@type": "WebSite",
     "url": `${Astro.site}`,
-    "name": "DataNova",
-    "description": "DataNova Analytics Inc. provides advanced analytics for Excel to help businesses unlock actionable insights quickly with no coding required."
+    "name": "GMTEC",
+    "description": "GMTEC Group is a consulting company providing expertise in the Automotive sector since 2003."
   }
 };
 ---
@@ -139,6 +143,21 @@ const schema: WithContext<Thing> = {
           }
         </dl>
       </div>
+    </div>
+  </section>
+
+  {/* Partners Section */}
+  <section class="mx-auto max-w-[85rem] px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
+    <div class="mx-auto max-w-2xl text-center lg:mb-14">
+      <h2 class="text-balance text-2xl font-semibold text-slate-800 md:text-3xl md:leading-tight">
+        Our Partners
+      </h2>
+      <p class="mt-1 text-pretty text-slate-600">
+        At GMTEC, we support a wide range of partners, from international groups to mid-sized companies. Whatever their profile, we provide them with on-the-ground expertise, a tailor-made approach and the proximity they need to boost their commercial effectiveness in Europe.
+      </p>
+      <p class="mt-4 text-pretty text-slate-600">
+        We build long-term relationships based on trust, transparency and concrete results. Our added value lies in our ability to bridge the gap between cultures, teams and technical issues, facilitating exchanges and the development of ambitious projects.
+      </p>
     </div>
   </section>
 

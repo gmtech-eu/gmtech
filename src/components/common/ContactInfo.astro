@@ -4,21 +4,21 @@ const { companyName, address, phone, email, website } = Astro.props;
 ---
 
 <div>
-  <h3 class="font-semibold text-slate-700">Contact Us</h3>
-  <ul class="mt-3 space-y-2 text-sm text-slate-600">
+  <h3 class="font-semibold text-slate-700 md:text-right">Contact Us</h3>
+  <ul class="mt-3 space-y-2 text-sm text-slate-600 md:text-right">
     <li>{companyName}</li>
     <li>{address}</li>
-    <li class="flex items-center gap-x-2">
+    <li class="flex items-center gap-x-2 md:justify-end">
       <Icon name="mobile" />
       <a href={'tel:+' + phone.replace(/[^+\d]/g, '')} class="transition-colors duration-300 hover:text-slate-500"
         >{phone}</a
       >
     </li>
-    <li class="flex items-center gap-x-2">
+    <li class="flex items-center gap-x-2 md:justify-end">
       <Icon name="email" />
       <a href={'mailto:' + email} class="transition-colors duration-300 hover:text-slate-500">{email}</a>
     </li>
-    <li class="flex items-center gap-x-2">
+    <li class="flex items-center gap-x-2 md:justify-end">
       <Icon name="world" />
       <a href={'https://' + website} class="transition-colors duration-300 hover:text-slate-500">{website}</a>
     </li>
