@@ -1,6 +1,8 @@
 ---
 import Button from '@ui/Button.astro';
 import { navigationLinks } from '@utils/navigation';
+import { Image } from 'astro:assets';
+import logo from '@images/logo.jpeg';
 
 const currentPath = Astro.url.pathname;
 ---
@@ -12,6 +14,7 @@ const currentPath = Astro.url.pathname;
     class="relative mx-auto w-full px-4 py-2 sm:px-6 lg:px-8 xl:flex xl:max-w-7xl xl:items-center xl:justify-between xl:gap-3 2xl:max-w-[85rem]"
   >
     <div class="flex items-center justify-between gap-x-1">
+      <Image src={logo} alt="GMTEC Logo" width={50} height={50} />
       <a
         class="dm-sans flex-none text-2xl font-light text-slate-400 focus:opacity-80 focus:outline-hidden"
         href="/"
