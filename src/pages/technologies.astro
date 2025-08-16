@@ -1,55 +1,108 @@
 ---
-import BaseLayout from "@layout/BaseLayout.astro";
-import type { WithContext, Thing } from "schema-dts";
-import Icon from "@ui/icons/Icon.astro";
+import TechnologySlideshow from '@common/TechnologySlideshow.svelte';
+import BaseLayout from '@layout/BaseLayout.astro';
+import Icon from '@ui/icons/Icon.astro';
+import type { Thing, WithContext } from 'schema-dts';
+
+// Import images for slideshows
+import powertrain1 from '@images/slideshow/powertrain/1.png';
+import powertrain2 from '@images/slideshow/powertrain/2.png';
+import powertrain3 from '@images/slideshow/powertrain/3.png';
+import powertrain4 from '@images/slideshow/powertrain/4.png';
+import powertrain5 from '@images/slideshow/powertrain/5.webp';
+import epowertrain1 from '@images/slideshow/powertrain/e-powertrain/1.png';
+import epowertrain2 from '@images/slideshow/powertrain/e-powertrain/2.png';
+
+import chassis1 from '@images/slideshow/chassis/1.png';
+import chassis2 from '@images/slideshow/chassis/2.png';
+import chassis3 from '@images/slideshow/chassis/3.png';
+import chassis4 from '@images/slideshow/chassis/4.png';
+import chassis5 from '@images/slideshow/chassis/5.png';
+import chassis6 from '@images/slideshow/chassis/6.png';
+import chassis7 from '@images/slideshow/chassis/7.png';
+import chassis8 from '@images/slideshow/chassis/8.jpg';
+import chassis9 from '@images/slideshow/chassis/9.png';
+
+import interior1 from '@images/slideshow/interior_parts/1.png';
+import interior2 from '@images/slideshow/interior_parts/2.png';
+import interior3 from '@images/slideshow/interior_parts/3.png';
+import interior4 from '@images/slideshow/interior_parts/4.jpg';
+
+import thermal1 from '@images/slideshow/thermal_management/1.png';
+import thermal2 from '@images/slideshow/thermal_management/2.png';
+import thermal3 from '@images/slideshow/thermal_management/3.png';
 
 // Data for the technologies sections
 const technologiesData = {
-  title: "Technologies",
-  description: "We work mainly in the fields of chassis and thermal management, but our know-how can be adapted to meet the many technical challenges posed by developments in the automotive industry.",
+  title: 'Technologies',
+  description:
+    'We work mainly in the fields of chassis and thermal management, but our know-how can be adapted to meet the many technical challenges posed by developments in the automotive industry.',
   technologies: [
     {
-      title: "Powertrain",
-      icon: "zap",
-      description: "Advanced powertrain solutions including electric and hybrid systems, engine optimization, and transmission technologies.",
+      title: 'Powertrain',
+      icon: 'zap',
+      description:
+        'Advanced powertrain solutions including electric and hybrid systems, engine optimization, and transmission technologies.',
       features: [
-        "Electric and hybrid powertrains",
-        "Advanced combustion engines",
-        "Transmission systems",
-        "Energy management systems",
+        'Electric and hybrid powertrains',
+        'Advanced combustion engines',
+        'Transmission systems',
+        'Energy management systems',
+      ],
+      images: [
+        { src: powertrain1.src, alt: 'Powertrain technology 1' },
+        { src: powertrain2.src, alt: 'Powertrain technology 2' },
+        { src: powertrain3.src, alt: 'Powertrain technology 3' },
+        { src: powertrain4.src, alt: 'Powertrain technology 4' },
+        { src: powertrain5.src, alt: 'Powertrain technology 5' },
+        { src: epowertrain1.src, alt: 'E-Powertrain technology 1' },
+        { src: epowertrain2.src, alt: 'E-Powertrain technology 2' },
       ],
     },
     {
-      title: "Chassis",
-      icon: "layers",
-      description: "Comprehensive chassis development including suspension systems, steering, and vehicle dynamics optimization.",
-      features: [
-        "Active suspension systems",
-        "Steering technologies",
-        "Braking systems",
-        "Vehicle dynamics control",
+      title: 'Chassis',
+      icon: 'layers',
+      description:
+        'Comprehensive chassis development including suspension systems, steering, and vehicle dynamics optimization.',
+      features: ['Active suspension systems', 'Steering technologies', 'Braking systems', 'Vehicle dynamics control'],
+      images: [
+        { src: chassis1.src, alt: 'Chassis technology 1' },
+        { src: chassis2.src, alt: 'Chassis technology 2' },
+        { src: chassis3.src, alt: 'Chassis technology 3' },
+        { src: chassis4.src, alt: 'Chassis technology 4' },
+        { src: chassis5.src, alt: 'Chassis technology 5' },
+        { src: chassis6.src, alt: 'Chassis technology 6' },
+        { src: chassis7.src, alt: 'Chassis technology 7' },
+        { src: chassis8.src, alt: 'Chassis technology 8' },
+        { src: chassis9.src, alt: 'Chassis technology 9' },
       ],
     },
     {
-      title: "Interior Parts",
-      icon: "box",
-      description: "Interior components and systems focusing on comfort, safety, and user experience.",
+      title: 'Interior Parts',
+      icon: 'box',
+      description: 'Interior components and systems focusing on comfort, safety, and user experience.',
       features: [
-        "Seating systems",
-        "Dashboard and console components",
-        "Safety systems integration",
-        "Interior lighting solutions",
+        'Seating systems',
+        'Dashboard and console components',
+        'Safety systems integration',
+        'Interior lighting solutions',
+      ],
+      images: [
+        { src: interior1.src, alt: 'Interior parts 1' },
+        { src: interior2.src, alt: 'Interior parts 2' },
+        { src: interior3.src, alt: 'Interior parts 3' },
+        { src: interior4.src, alt: 'Interior parts 4' },
       ],
     },
     {
-      title: "Thermal Management",
-      icon: "thermometer",
-      description: "Complete thermal management solutions for vehicle efficiency and comfort.",
-      features: [
-        "Battery thermal management",
-        "HVAC systems",
-        "Engine cooling systems",
-        "Heat recovery solutions",
+      title: 'Thermal Management',
+      icon: 'thermometer',
+      description: 'Complete thermal management solutions for vehicle efficiency and comfort.',
+      features: ['Battery thermal management', 'HVAC systems', 'Engine cooling systems', 'Heat recovery solutions'],
+      images: [
+        { src: thermal1.src, alt: 'Thermal management 1' },
+        { src: thermal2.src, alt: 'Thermal management 2' },
+        { src: thermal3.src, alt: 'Thermal management 3' },
       ],
     },
   ],
@@ -57,36 +110,38 @@ const technologiesData = {
 
 // SEO metadata for the page
 const seo = {
-  title: "Technologies - GMTEC",
-  description: "Discover GMTEC's expertise in automotive technologies including powertrain, chassis, interior parts, and thermal management solutions.",
+  title: 'Technologies - GMTEC',
+  description:
+    "Discover GMTEC's expertise in automotive technologies including powertrain, chassis, interior parts, and thermal management solutions.",
 };
 
 // Schema.org metadata for SEO
 const schema: WithContext<Thing> = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "inLanguage": "en-US",
-  "@id": Astro.url.href,
-  "url": Astro.url.href,
-  "name": "Technologies - GMTEC",
-  "description": "Explore GMTEC's comprehensive automotive technology expertise spanning powertrain, chassis, interior parts, and thermal management.",
-  "isPartOf": {
-    "@type": "WebSite",
-    "url": `${Astro.site}`,
-    "name": "GMTEC",
-    "description": "GMTEC Group is a consulting company providing expertise in the Automotive sector since 2003.",
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  inLanguage: 'en-US',
+  '@id': Astro.url.href,
+  url: Astro.url.href,
+  name: 'Technologies - GMTEC',
+  description:
+    "Explore GMTEC's comprehensive automotive technology expertise spanning powertrain, chassis, interior parts, and thermal management.",
+  isPartOf: {
+    '@type': 'WebSite',
+    url: `${Astro.site}`,
+    name: 'GMTEC',
+    description: 'GMTEC Group is a consulting company providing expertise in the Automotive sector since 2003.',
   },
 };
 ---
 
 <BaseLayout seo={seo} schema={schema}>
-  <section class="mx-auto max-w-[85rem] px-4 pb-12 pt-48 sm:px-6 lg:px-8">
+  <section class="mx-auto max-w-[85rem] px-4 pt-48 pb-12 sm:px-6 lg:px-8">
     <div class="max-w-7xl">
       <div class="mx-auto max-w-3xl text-center lg:mb-14">
-        <h1 class="text-balance text-4xl text-slate-800 sm:text-5xl md:text-6xl lg:text-7xl">
+        <h1 class="text-4xl text-balance text-slate-800 sm:text-5xl md:text-6xl lg:text-7xl">
           {technologiesData.title}
         </h1>
-        <p class="mt-8 text-pretty text-lg font-medium text-slate-700 sm:text-xl/8">
+        <p class="mt-8 text-lg font-medium text-pretty text-slate-700 sm:text-xl/8">
           {technologiesData.description}
         </p>
       </div>
@@ -95,26 +150,31 @@ const schema: WithContext<Thing> = {
 
   {/* Technologies Grid Section */}
   <section class="mx-auto max-w-[85rem] px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+    <div class="space-y-16">
       {
         technologiesData.technologies.map((tech, index) => (
-          <div class="group relative rounded-3xl bg-linear-to-br/oklch from-teal-100 via-transparent to-white p-8 ring-1 ring-slate-200 transition-all duration-300 hover:shadow-xl">
-            <div class="flex items-start gap-4">
-              <div class="flex size-12 shrink-0 items-center justify-center rounded-xl bg-teal-400 text-white">
-                <Icon name={tech.icon} class="size-6" />
+          <div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
+            <div class={`${index % 2 === 1 ? 'lg:order-2' : ''}`}>
+              <div class="flex items-start gap-4">
+                <div class="flex size-12 shrink-0 items-center justify-center rounded-xl bg-teal-400 text-white">
+                  <Icon name={tech.icon} class="size-6" />
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-2xl font-semibold text-slate-800">{tech.title}</h3>
+                  <p class="mt-2 text-slate-600">{tech.description}</p>
+                  <ul class="mt-4 space-y-2">
+                    {tech.features.map((feature) => (
+                      <li class="flex items-start gap-2 text-sm text-slate-600">
+                        <Icon name="check" class="size-4 shrink-0 text-teal-600" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              <div class="flex-1">
-                <h3 class="text-xl font-semibold text-slate-800">{tech.title}</h3>
-                <p class="mt-2 text-slate-600">{tech.description}</p>
-                <ul class="mt-4 space-y-2">
-                  {tech.features.map((feature) => (
-                    <li class="flex items-start gap-2 text-sm text-slate-600">
-                      <Icon name="check" class="size-4 shrink-0 text-teal-600" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            </div>
+            <div class={`${index % 2 === 1 ? 'lg:order-1' : ''}`}>
+              <TechnologySlideshow images={tech.images} title={tech.title} client:load />
             </div>
           </div>
         ))
@@ -125,10 +185,8 @@ const schema: WithContext<Thing> = {
   {/* Call to Action Section */}
   <section class="mx-auto max-w-[85rem] px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
     <div class="relative rounded-3xl bg-teal-200 p-8 text-center sm:p-12">
-      <h2 class="text-balance text-2xl font-semibold text-slate-800 md:text-3xl">
-        Ready to discuss your project?
-      </h2>
-      <p class="mt-4 text-pretty text-lg text-slate-700">
+      <h2 class="text-2xl font-semibold text-balance text-slate-800 md:text-3xl">Ready to discuss your project?</h2>
+      <p class="mt-4 text-lg text-pretty text-slate-700">
         Our team of experts is ready to help you navigate the complexities of automotive technology development.
       </p>
       <div class="mt-8">

@@ -499,4 +499,150 @@ export const Icons = {
     strokeLinejoin: "round",
     stroke: "currentColor",
   },
+  zap: {
+    paths: [
+      {
+        d: "M13 2L3 14h9l-1 8 10-12h-9l1-8z",
+      },
+    ],
+    viewBox: "0 0 24 24",
+    fill: "none",
+    strokeWidth: "1.5",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    stroke: "currentColor",
+  },
+  layers: {
+    paths: [
+      {
+        d: "M12 2L2 7l10 5 10-5-10-5z",
+      },
+      {
+        d: "M2 17l10 5 10-5",
+      },
+      {
+        d: "M2 12l10 5 10-5",
+      },
+    ],
+    viewBox: "0 0 24 24",
+    fill: "none",
+    strokeWidth: "1.5",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    stroke: "currentColor",
+  },
+  box: {
+    paths: [
+      {
+        d: "M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z",
+      },
+      {
+        d: "M3.3 7l8.7 5 8.7-5",
+      },
+      {
+        d: "M12 22V12",
+      },
+    ],
+    viewBox: "0 0 24 24",
+    fill: "none",
+    strokeWidth: "1.5",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    stroke: "currentColor",
+  },
+  thermometer: {
+    paths: [
+      {
+        d: "M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z",
+      },
+    ],
+    viewBox: "0 0 24 24",
+    fill: "none",
+    strokeWidth: "1.5",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    stroke: "currentColor",
+  },
+  externalLink: {
+    paths: [
+      {
+        d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6",
+      },
+      {
+        d: "M15 3h6v6",
+      },
+      {
+        d: "M10 14L21 3",
+      },
+    ],
+    viewBox: "0 0 24 24",
+    fill: "none",
+    strokeWidth: "1.5",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    stroke: "currentColor",
+  },
+  linkedin: {
+    paths: [
+      {
+        d: "M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z",
+      },
+      {
+        d: "M2 9h4v12H2z",
+      },
+      {
+        d: "M4 2a2 2 0 1 0 0 4 2 2 0 1 0 0-4z",
+      },
+    ],
+    viewBox: "0 0 24 24",
+    fill: "none",
+    strokeWidth: "1.5",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    stroke: "currentColor",
+  },
+  newspaper: {
+    paths: [
+      {
+        d: "M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2",
+      },
+      {
+        d: "M18 14h-8",
+      },
+      {
+        d: "M15 18h-5",
+      },
+      {
+        d: "M10 6h8v4h-8V6Z",
+      },
+    ],
+    viewBox: "0 0 24 24",
+    fill: "none",
+    strokeWidth: "1.5",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    stroke: "currentColor",
+  },
+  users: {
+    paths: [
+      {
+        d: "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2",
+      },
+      {
+        d: "M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z",
+      },
+      {
+        d: "M22 21v-2a4 4 0 0 0-3-3.87",
+      },
+      {
+        d: "M16 3.13a4 4 0 0 1 0 7.75",
+      },
+    ],
+    viewBox: "0 0 24 24",
+    fill: "none",
+    strokeWidth: "1.5",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    stroke: "currentColor",
+  },
 };
