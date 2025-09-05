@@ -1,38 +1,33 @@
 ---
 import Icon from "@ui/icons/Icon.astro";
+import featureGridData from "@data/featureGrid.json";
 
-// Content for the section title and subtitle
-const title =
-  'Our vision';
-const subTitle =
-  "To empower our core business within the automotive OE sector, we have been diversifying our activities for around five years with strategic initiatives. Our ambition: to become the most efficient and reliable local partner for suppliers to the automotive, agricultural and industrial sectors, with a presence that extends well beyond the European market.";
+const { title, subtitle, features: cmsFeatures } = featureGridData;
 
+// Reconstruct features array with CMS data but keeping fixed styling classes
 const features = [
   {
     borderClasses: "md:border-l md:border-r",
     gradientClasses: "bg-linear-to-l/oklch from-teal-200 to-transparent",
     icon: "cursorRays",
-    heading: "Advanced R&D Activities",
-    description:
-      "Launching new activities in advanced R&D, continuously learning on new technologies, new regulations and new market tendencies to stay at the forefront of automotive innovation.",
+    heading: cmsFeatures.rnd.heading,
+    description: cmsFeatures.rnd.description,
   },
   {
     borderClasses: "border-b border-t md:border-b-0",
     gridClasses: "md:col-start-2 md:col-end-3",
     gradientClasses: "bg-linear-to-t/oklch from-teal-200 to-transparent",
     icon: "cog",
-    heading: "Multi-Sector Expertise",
-    description:
-      "Promotion of technologies not limited to the OE Automotive sector, but also for systems and components in the Agricultural, Industrial and Independent Aftermarket (IAM) areas.",
+    heading: cmsFeatures.multiSector.heading,
+    description: cmsFeatures.multiSector.description,
   },
   {
     borderClasses: "md:border-l md:border-r md:border-t",
     gridClasses: "md:col-end-4",
     gradientClasses: "bg-linear-to-tl/oklch from-teal-200 to-transparent",
     icon: "puzzle",
-    heading: "Global Expansion",
-    description:
-      "Enlarge our presence in EMEA and in new Continents via opening of new offices or via partnerships, extending our reach to serve clients worldwide.",
+    heading: cmsFeatures.expansion.heading,
+    description: cmsFeatures.expansion.description,
   },
 ];
 ---
@@ -55,7 +50,7 @@ const features = [
       <p
         class="mt-6 text-start text-lg/8 text-pretty text-slate-700 sm:text-center md:text-start"
       >
-        {subTitle}
+        {subtitle}
       </p>
     </div>
 

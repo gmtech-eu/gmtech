@@ -1,0 +1,15 @@
+{
+  "title": {
+    "firstLine": "Ready to accelerate your growth?",
+    "secondLine": "Partner with",
+    "companyName": {
+      "highlighted": "GM",
+      "normal": "TEC"
+    }
+  },
+  "subtitle": "Transform your fixed costs into variable costs and gain immediate access to seasoned automotive sales professionals. Let's discuss how we can support your business development in Europe.",
+  "ctaButton": {
+    "text": "Contact Our Experts",
+    "href": "/contact"
+  }
+}

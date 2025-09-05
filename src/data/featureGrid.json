@@ -1,0 +1,18 @@
+{
+  "title": "Our vision",
+  "subtitle": "To empower our core business within the automotive OE sector, we have been diversifying our activities for around five years with strategic initiatives. Our ambition: to become the most efficient and reliable local partner for suppliers to the automotive, agricultural and industrial sectors, with a presence that extends well beyond the European market.",
+  "features": {
+    "rnd": {
+      "heading": "Advanced R&D Activities",
+      "description": "Launching new activities in advanced R&D, continuously learning on new technologies, new regulations and new market tendencies to stay at the forefront of automotive innovation."
+    },
+    "multiSector": {
+      "heading": "Multi-Sector Expertise",
+      "description": "Promotion of technologies not limited to the OE Automotive sector, but also for systems and components in the Agricultural, Industrial and Independent Aftermarket (IAM) areas."
+    },
+    "expansion": {
+      "heading": "Global Expansion",
+      "description": "Enlarge our presence in EMEA and in new Continents via opening of new offices or via partnerships, extending our reach to serve clients worldwide."
+    }
+  }
+}

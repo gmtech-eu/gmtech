@@ -2,14 +2,9 @@
 import Icon from "@ui/icons/Icon.astro";
 import FeatureCard from "@common/FeatureCard.astro";
 import Button from "@ui/Button.astro";
+import featureAnimatedData from "@data/featureAnimated.json";
 
-// Content for the section title and subtitle
-const title = "Our Strategic Approach";
-const subTitle =
-  "Agile and responsive, we are constantly adapting thanks to our lean organizational structure and the versatility of our team. Our role goes far beyond simply supporting suppliers' sales teams - we actively contribute to development at every stage.";
-
-// Call-to-action configuration for the tertiary button
-const tertiaryCTA = { text: "Learn More", href: "/about" };
+const { title, subtitle, ctaButton, features } = featureAnimatedData;
 ---
 
 <section
@@ -48,16 +43,16 @@ const tertiaryCTA = { text: "Learn More", href: "/about" };
         {title}
       </h2>
       <p class="mt-6 text-pretty text-lg/8 text-slate-700">
-        {subTitle}
+        {subtitle}
       </p>
       <div
         class="mt-10 flex items-center justify-start gap-x-6 sm:justify-center lg:justify-start"
       >
         <Button
-          href={tertiaryCTA.href}
+          href={ctaButton.href}
           variant="tertiary"
           className="group inline-flex items-center justify-center gap-x-2 py-2.5! pl-5 pr-4 text-slate-700"
-          >{tertiaryCTA.text}<Icon name="chevronRight" /></Button
+          >{ctaButton.text}<Icon name="chevronRight" /></Button
         >
       </div>
     </div>
@@ -69,7 +64,7 @@ const tertiaryCTA = { text: "Learn More", href: "/about" };
 
       <FeatureCard
         icon="dataBase"
-        description="Identify opportunities and qualify potential partners in target markets."
+        description={features.identify}
         styleClass=""
       />
 
@@ -97,7 +92,7 @@ const tertiaryCTA = { text: "Learn More", href: "/about" };
       {/* Second Feature Card */}
       <FeatureCard
         icon="brain"
-        description="Develop tailored strategies and manage complex automotive projects."
+        description={features.develop}
         styleClass="self-center"
       />
 
@@ -125,7 +120,7 @@ const tertiaryCTA = { text: "Learn More", href: "/about" };
       {/* Third Feature Card */}
       <FeatureCard
         icon="lightbulb"
-        description="Transform partnerships into sustainable business growth and success."
+        description={features.transform}
         styleClass="self-end"
       />
     </div>

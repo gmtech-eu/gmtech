@@ -320,6 +320,142 @@ export default config({
         }),
       },
     }),
+    homeStrategy: singleton({
+      label: "Home - Strategy Section",
+      path: "src/data/featureAnimated",
+      format: { data: "json" },
+      schema: {
+        title: fields.text({
+          label: "Section title",
+          defaultValue: "Our Strategic Approach"
+        }),
+        subtitle: fields.text({
+          label: "Section description",
+          multiline: true,
+          defaultValue: "Agile and responsive, we are constantly adapting thanks to our lean organizational structure and the versatility of our team. Our role goes far beyond simply supporting suppliers' sales teams - we actively contribute to development at every stage."
+        }),
+        ctaButton: fields.object({
+          text: fields.text({ 
+            label: "Button text",
+            defaultValue: "Learn More"
+          }),
+          href: fields.text({ 
+            label: "Button URL",
+            defaultValue: "/about"
+          }),
+        }),
+        features: fields.object({
+          identify: fields.text({ 
+            label: "Identify feature description",
+            multiline: true,
+            defaultValue: "Identify opportunities and qualify potential partners in target markets."
+          }),
+          develop: fields.text({ 
+            label: "Develop feature description",
+            multiline: true,
+            defaultValue: "Develop tailored strategies and manage complex automotive projects."
+          }),
+          transform: fields.text({ 
+            label: "Transform feature description",
+            multiline: true,
+            defaultValue: "Transform partnerships into sustainable business growth and success."
+          }),
+        }),
+      },
+    }),
+    homeVision: singleton({
+      label: "Home - Vision Section",
+      path: "src/data/featureGrid",
+      format: { data: "json" },
+      schema: {
+        title: fields.text({
+          label: "Section title",
+          defaultValue: "Our vision"
+        }),
+        subtitle: fields.text({
+          label: "Section description",
+          multiline: true,
+          defaultValue: "To empower our core business within the automotive OE sector, we have been diversifying our activities for around five years with strategic initiatives. Our ambition: to become the most efficient and reliable local partner for suppliers to the automotive, agricultural and industrial sectors, with a presence that extends well beyond the European market."
+        }),
+        features: fields.object({
+          rnd: fields.object({
+            heading: fields.text({ 
+              label: "R&D heading",
+              defaultValue: "Advanced R&D Activities"
+            }),
+            description: fields.text({ 
+              label: "R&D description",
+              multiline: true,
+              defaultValue: "Launching new activities in advanced R&D, continuously learning on new technologies, new regulations and new market tendencies to stay at the forefront of automotive innovation."
+            }),
+          }),
+          multiSector: fields.object({
+            heading: fields.text({ 
+              label: "Multi-sector heading",
+              defaultValue: "Multi-Sector Expertise"
+            }),
+            description: fields.text({ 
+              label: "Multi-sector description",
+              multiline: true,
+              defaultValue: "Promotion of technologies not limited to the OE Automotive sector, but also for systems and components in the Agricultural, Industrial and Independent Aftermarket (IAM) areas."
+            }),
+          }),
+          expansion: fields.object({
+            heading: fields.text({ 
+              label: "Expansion heading",
+              defaultValue: "Global Expansion"
+            }),
+            description: fields.text({ 
+              label: "Expansion description",
+              multiline: true,
+              defaultValue: "Enlarge our presence in EMEA and in new Continents via opening of new offices or via partnerships, extending our reach to serve clients worldwide."
+            }),
+          }),
+        }),
+      },
+    }),
+    homeCTA: singleton({
+      label: "Home - Call to Action",
+      path: "src/data/cta",
+      format: { data: "json" },
+      schema: {
+        title: fields.object({
+          firstLine: fields.text({
+            label: "First line of title",
+            defaultValue: "Ready to accelerate your growth?"
+          }),
+          secondLine: fields.text({
+            label: "Second line (before company name)",
+            defaultValue: "Partner with"
+          }),
+          companyName: fields.object({
+            highlighted: fields.text({
+              label: "Company name highlighted part",
+              defaultValue: "GM"
+            }),
+            normal: fields.text({
+              label: "Company name normal part", 
+              defaultValue: "TEC"
+            }),
+          }),
+        }),
+        subtitle: fields.text({
+          label: "Subtitle description",
+          multiline: true,
+          defaultValue: "Transform your fixed costs into variable costs and gain immediate access to seasoned automotive sales professionals. Let's discuss how we can support your business development in Europe."
+        }),
+        ctaButton: fields.object({
+          text: fields.text({ 
+            label: "Button text",
+            defaultValue: "Contact Our Experts"
+          }),
+          href: fields.text({ 
+            label: "Button URL",
+            defaultValue: "/contact"
+          }),
+        }),
+      },
+    }),
   },
 
   collections: {},

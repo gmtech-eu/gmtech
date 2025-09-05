@@ -1,14 +1,8 @@
 ---
 import Button from "@ui/Button.astro";
+import ctaData from "@data/cta.json";
 
-// Content for the section title and subtitle
-const title =
-  'Ready to accelerate your growth? <br /> Partner with <span class="font-medium text-teal-700">GM</span><span class="font-light text-slate-400">TEC</span>.';
-const subTitle =
-  "Transform your fixed costs into variable costs and gain immediate access to seasoned automotive sales professionals. Let's discuss how we can support your business development in Europe.";
-
-// Call-to-action configuration for the primary button
-const primaryCTA = { text: "Contact Our Experts", href: "/contact" };
+const { title, subtitle, ctaButton } = ctaData;
 ---
 
 <section
@@ -18,15 +12,17 @@ const primaryCTA = { text: "Contact Our Experts", href: "/contact" };
     <h2
       class="text-balance text-4xl text-slate-800 sm:text-5xl"
     >
-      <Fragment set:html={title} />
+      {title.firstLine} <br /> 
+      {title.secondLine} 
+      <span class="font-medium text-teal-700">{title.companyName.highlighted}</span><span class="font-light text-slate-400">{title.companyName.normal}</span>.
     </h2>
     <p class="text-lg\/8 mt-5 text-pretty text-slate-600">
-      {subTitle}
+      {subtitle}
     </p>
     <Button
-      href={primaryCTA.href}
+      href={ctaButton.href}
       variant="primary"
-      className="mt-7 inline-flex border-none px-3.5!">{primaryCTA.text}</Button
+      className="mt-7 inline-flex border-none px-3.5!">{ctaButton.text}</Button
     >
   </div>
 </section>
