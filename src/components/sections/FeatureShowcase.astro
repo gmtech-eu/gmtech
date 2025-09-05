@@ -1,51 +1,44 @@
 ---
-import image_1 from '@images/analytics.webp';
-import image_3 from '@images/cultural_bridge.webp';
-import image_2 from '@images/program_management.webp';
 import { Image } from 'astro:assets';
+import featureShowcaseData from '@data/featureShowcase.json';
 
-// Content for the section title and subtitle
-const title = `Who we are`;
-const subTitle = `We've been active in the automotive sector for over 20 years. Our cross-disciplinary team provides flexible support for both our principals and end customers, in a wide range of areas including sales, engineering, logistics and quality. By offering agile and flexible solutions for business development, our mission is to strengthen the Automotive Supplier's presence in the field and increase the success chances for all the existing opportunities.`;
+// Import default images as fallbacks
+import image_1 from '@images/analytics.webp';
+import image_2 from '@images/program_management.webp';
+import image_3 from '@images/cultural_bridge.webp';
 
-// Features list for displaying the key highlights
+const { title, subtitle, features: cmsFeatures } = featureShowcaseData;
 
-const features = [
-  {
-    title: 'Business Development', // Feature title
-    description:
-      'We offer tailor-made Business Development support in the Automotive OE sector, with a focus on the French, Italian, Benelux and Spanish markets', // Feature description
-    image: image_1, // Associated image
-    class: 'content-center border-b border-dashed border-slate-400 py-5 sm:col-span-2 sm:p-5', // Custom CSS classes for layout and styling
-    alignment: 'mx-auto mt-10 rounded-xl shadow-lg sm:w-[75%]', // Alignment and styling for the image
-  },
-  {
-    title: 'Program Management',
-    description: `Once a project has been awarded, we provide program management throughout the development phase, right up to the start of production (SOP), as well as during the series production phase.`,
-    image: image_2,
-    class: 'content-center py-5 sm:row-start-2 sm:p-5 sm:py-10',
-    alignment: 'ml-auto mr-auto mt-10 w-[65%] rounded-xl shadow-lg sm:ml-0 sm:w-[45%]',
-  },
-  {
-    title: 'Cultural Bridge',
-    description:
-      'As a true cultural bridge between our Principals and our Customers, we tailor our support to the specific needs of each, bringing constant and lasting value to our partners.',
-    image: image_3,
-    class:
-      'content-center border-t border-dashed border-slate-400 py-5 sm:row-span-2 sm:row-start-2 sm:border-l sm:border-t-0 sm:p-5 sm:text-right',
-    alignment: 'ml-auto mr-auto mt-10 w-[80%] rounded-xl shadow-lg sm:mr-0',
-  },
-  {
-    title: 'Our added value',
-    class: 'content-center border-t border-dashed border-slate-400 py-5 sm:p-5',
-    moreFeatures: [
-      'Participating in the recruitment of technical profiles, such as resident engineers',
-      'Identifying quality partners for fast, efficient handling of customer complaints',
-      'Facilitating the search for industrial partners via our network',
-      'Promoting the creation of joint ventures or operational alliances',
-    ],
-  },
+// Map to associate default images
+const imageMap: Record<string, any> = {
+  '@images/analytics.webp': image_1,
+  '@images/program_management.webp': image_2,
+  '@images/cultural_bridge.webp': image_3,
+};
+
+// CSS classes for layout (keeping original design)
+const featureClasses = [
+  'content-center border-b border-dashed border-slate-400 py-5 sm:col-span-2 sm:p-5',
+  'content-center py-5 sm:row-start-2 sm:p-5 sm:py-10',
+  'content-center border-t border-dashed border-slate-400 py-5 sm:row-span-2 sm:row-start-2 sm:border-l sm:border-t-0 sm:p-5 sm:text-right',
+  'content-center border-t border-dashed border-slate-400 py-5 sm:p-5'
 ];
+
+const imageAlignments = [
+  'mx-auto mt-10 rounded-xl shadow-lg sm:w-[75%]',
+  'ml-auto mr-auto mt-10 w-[65%] rounded-xl shadow-lg sm:ml-0 sm:w-[45%]',
+  'ml-auto mr-auto mt-10 w-[80%] rounded-xl shadow-lg sm:mr-0',
+  ''
+];
+
+// Process features from CMS
+const processedFeatures = cmsFeatures.map((feature, index) => ({
+  ...feature,
+  class: featureClasses[index] || 'content-center py-5 sm:p-5',
+  alignment: imageAlignments[index] || '',
+  processedImage: feature.image.discriminant && feature.image.value ? imageMap[feature.image.value.src] : null,
+  moreFeatures: feature.additionalItems.discriminant ? feature.additionalItems.value : null
+}));
 ---
 
 <div class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 md:py-14 lg:px-8 lg:py-20">
@@ -55,21 +48,29 @@ const features = [
       <Fragment set:html={title} />
     </h2>
     <p class="mt-1 text-pretty text-slate-600">
-      <Fragment set:html={subTitle} />
+      <Fragment set:html={subtitle} />
     </p>
   </div>
 
   <div class="mx-auto grid max-w-[85rem] px-4 pb-10 sm:grid-cols-2 sm:grid-rows-3 sm:px-6 lg:px-8 lg:pb-14">
     {
-      features.map((feature) => (
+      processedFeatures.map((feature) => (
         <div class={`${feature.class}`}>
           <h2 class="text-2xl font-bold text-slate-600">{feature.title}</h2>
 
-          <p class="mt-2 text-base/6 text-slate-600">
-            <Fragment set:html={feature.description || ''} />
-          </p>
+          {feature.description && (
+            <p class="mt-2 text-base/6 text-slate-600">
+              <Fragment set:html={feature.description} />
+            </p>
+          )}
 
-          {feature.image && <Image class={`${feature.alignment || ''}`} src={feature.image} alt="" />}
+          {feature.processedImage && (
+            <Image 
+              class={`${feature.alignment || ''}`} 
+              src={feature.processedImage} 
+              alt={feature.image.value?.alt || ""} 
+            />
+          )}
 
           {feature.moreFeatures && (
             <ul class="mt-4 ml-4 w-4/5 list-inside list-disc space-y-2 text-base/6 text-slate-600 marker:text-teal-600">

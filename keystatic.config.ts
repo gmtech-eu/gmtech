@@ -20,8 +20,9 @@ export default config({
         },
 
   singletons: {
+    // ========== GLOBAL COMPONENTS ==========
     navbar: singleton({
-      label: "Navigation",
+      label: "Navigation Bar",
       path: "src/data/navbar",
       format: { data: "json" },
       schema: {
@@ -109,8 +110,10 @@ export default config({
         }),
       },
     }),
-    hero: singleton({
-      label: "Hero Section",
+
+    // ========== HOME PAGE ==========
+    homeHero: singleton({
+      label: "Home - Hero Section",
       path: "src/data/hero",
       format: { data: "json" },
       schema: {
@@ -153,6 +156,63 @@ export default config({
             defaultValue: "GMTEC Group"
           }),
         }),
+      },
+    }),
+    homeFeatures: singleton({
+      label: "Home - Features Section",
+      path: "src/data/featureShowcase",
+      format: { data: "json" },
+      schema: {
+        title: fields.text({
+          label: "Section title",
+          defaultValue: "Who we are"
+        }),
+        subtitle: fields.text({
+          label: "Section description",
+          multiline: true,
+          defaultValue: "We've been active in the automotive sector for over 20 years. Our cross-disciplinary team provides flexible support for both our principals and end customers, in a wide range of areas including sales, engineering, logistics and quality. By offering agile and flexible solutions for business development, our mission is to strengthen the Automotive Supplier's presence in the field and increase the success chances for all the existing opportunities."
+        }),
+        features: fields.array(
+          fields.object({
+            title: fields.text({ label: "Feature title" }),
+            description: fields.text({ 
+              label: "Feature description",
+              multiline: true
+            }),
+            image: fields.conditional(
+              fields.checkbox({ label: "Has image?" }),
+              {
+                true: fields.object({
+                  src: fields.image({
+                    label: "Feature image",
+                    directory: "src/assets/images",
+                    publicPath: "@images/",
+                  }),
+                  alt: fields.text({ 
+                    label: "Image alt text",
+                    defaultValue: ""
+                  }),
+                }),
+                false: fields.empty(),
+              }
+            ),
+            additionalItems: fields.conditional(
+              fields.checkbox({ label: "Has additional list items?" }),
+              {
+                true: fields.array(
+                  fields.text({ label: "List item" }),
+                  {
+                    label: "Additional features",
+                  }
+                ),
+                false: fields.empty(),
+              }
+            ),
+          }),
+          {
+            label: "Features",
+          }
+        ),
       },
     }),
   },

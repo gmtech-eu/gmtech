@@ -1,0 +1,68 @@
+{
+  "title": "Who we are",
+  "subtitle": "We've been active in the automotive sector for over 20 years. Our cross-disciplinary team provides flexible support for both our principals and end customers, in a wide range of areas including sales, engineering, logistics and quality. By offering agile and flexible solutions for business development, our mission is to strengthen the Automotive Supplier's presence in the field and increase the success chances for all the existing opportunities.",
+  "features": [
+    {
+      "title": "Business Development",
+      "description": "We offer tailor-made Business Development support in the Automotive OE sector, with a focus on the French, Italian, Benelux and Spanish markets",
+      "image": {
+        "discriminant": true,
+        "value": {
+          "src": "@images/analytics.webp",
+          "alt": "Business Development Analytics"
+        }
+      },
+      "additionalItems": {
+        "discriminant": false,
+        "value": null
+      }
+    },
+    {
+      "title": "Program Management",
+      "description": "Once a project has been awarded, we provide program management throughout the development phase, right up to the start of production (SOP), as well as during the series production phase.",
+      "image": {
+        "discriminant": true,
+        "value": {
+          "src": "@images/program_management.webp",
+          "alt": "Program Management"
+        }
+      },
+      "additionalItems": {
+        "discriminant": false,
+        "value": null
+      }
+    },
+    {
+      "title": "Cultural Bridge",
+      "description": "As a true cultural bridge between our Principals and our Customers, we tailor our support to the specific needs of each, bringing constant and lasting value to our partners.",
+      "image": {
+        "discriminant": true,
+        "value": {
+          "src": "@images/cultural_bridge.webp",
+          "alt": "Cultural Bridge"
+        }
+      },
+      "additionalItems": {
+        "discriminant": false,
+        "value": null
+      }
+    },
+    {
+      "title": "Our added value",
+      "description": "",
+      "image": {
+        "discriminant": false,
+        "value": null
+      },
+      "additionalItems": {
+        "discriminant": true,
+        "value": [
+          "Participating in the recruitment of technical profiles, such as resident engineers",
+          "Identifying quality partners for fast, efficient handling of customer complaints",
+          "Facilitating the search for industrial partners via our network",
+          "Promoting the creation of joint ventures or operational alliances"
+        ]
+      }
+    }
+  ]
+}
