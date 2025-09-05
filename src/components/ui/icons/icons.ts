@@ -661,4 +661,20 @@ export const Icons = {
     strokeLinejoin: "round",
     stroke: "currentColor",
   },
+  location: {
+    paths: [
+      {
+        d: "M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z",
+      },
+      {
+        d: "M12 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6z",
+      },
+    ],
+    viewBox: "0 0 24 24",
+    fill: "none",
+    strokeWidth: "1.5",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    stroke: "currentColor",
+  },
 };

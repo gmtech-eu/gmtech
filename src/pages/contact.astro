@@ -7,20 +7,16 @@ const contacts = [
   {
     id: 'france',
     office: 'France Office',
-    name: 'Arnaud DUHAMEL',
-    title: 'Responsable bureau France',
-    phone: '+33 6 12 34 56 78',
-    email: 'arnaud.duhamel@gmtec.eu',
-    avatarUrl: 'https://ui-avatars.com/api/?name=Arnaud+Duhamel&background=5aaeae&color=fff&size=200',
+    address: '123 Avenue des Champs-Élysées, 75008 Paris, France',
+    email: 'contact@gmtec.eu',
+    avatarUrl: 'https://ui-avatars.com/api/?name=France+Office&background=5aaeae&color=fff&size=200',
   },
   {
     id: 'italy',
     office: 'Italy Office',
-    name: 'Agostino CURATOLO',
-    title: 'Responsable bureau Italie',
-    phone: '+39 6 98 76 54 32',
-    email: 'agostino.curatolo@gmtec.eu',
-    avatarUrl: 'https://ui-avatars.com/api/?name=Agostino+Curatolo&background=087f7f&color=fff&size=200',
+    address: 'Via Roma 456, 20121 Milano, Italy',
+    email: 'contact@gmtec.eu',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Italy+Office&background=087f7f&color=fff&size=200',
   },
 ];
 
@@ -72,34 +68,19 @@ const schema: WithContext<Thing> = {
               {/* Avatar */}
               <img
                 src={contact.avatarUrl}
-                alt={contact.name}
+                alt={contact.office}
                 class="size-20 shrink-0 rounded-full shadow-lg ring-4 ring-white"
               />
 
               {/* Contact Details */}
               <div class="flex-1">
                 <h3 class="text-xl font-semibold text-slate-800">{contact.office}</h3>
-                <p class="mt-2 text-lg font-medium text-slate-700">{contact.name}</p>
-                <p class="text-sm text-slate-600">{contact.title}</p>
 
                 <div class="mt-4 space-y-2">
-                  <a
-                    href={`mailto:${contact.email}`}
-                    class="group/email inline-flex items-center gap-2 text-sm text-slate-600 transition-all duration-300 hover:text-teal-600"
-                  >
-                    <Icon name="email" class="size-4" />
-                    <span class="underline decoration-slate-300 underline-offset-2 transition-all group-hover/email:decoration-teal-600">
-                      {contact.email}
-                    </span>
-                  </a>
-
-                  <a
-                    href={`tel:${contact.phone}`}
-                    class="group/phone flex items-center gap-2 text-sm text-slate-600 transition-all duration-300 hover:text-teal-600"
-                  >
-                    <Icon name="mobile" class="size-4" />
-                    <span>{contact.phone}</span>
-                  </a>
+                  <div class="flex items-start gap-2 text-sm text-slate-600">
+                    <Icon name="location" class="mt-0.5 size-4 shrink-0" />
+                    <span>{contact.address}</span>
+                  </div>
                 </div>
 
                 {/* CTA Button */}
@@ -118,8 +99,8 @@ const schema: WithContext<Thing> = {
     </div>
 
     {/* LinkedIn Section */}
-    <div class="mt-16 text-center">
-      <div class="mx-auto max-w-2xl rounded-3xl bg-teal-200 p-8 sm:p-12">
+    <div class="mt-16">
+      <div class="rounded-3xl bg-teal-200 p-8 text-center sm:p-12">
         <Icon name="linkedin" class="mx-auto size-12 text-teal-700" />
         <h3 class="mt-4 text-2xl font-semibold text-slate-800">Stay Connected</h3>
         <p class="mt-2 text-slate-700">
