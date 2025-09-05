@@ -4,109 +4,47 @@ import BaseLayout from '@layout/BaseLayout.astro';
 import Icon from '@ui/icons/Icon.astro';
 import type { Thing, WithContext } from 'schema-dts';
 
-// Import images for slideshows
-import powertrain1 from '@images/slideshow/powertrain/1.webp';
-import powertrain2 from '@images/slideshow/powertrain/2.webp';
-import powertrain3 from '@images/slideshow/powertrain/3.webp';
-import powertrain4 from '@images/slideshow/powertrain/4.webp';
-import powertrain5 from '@images/slideshow/powertrain/5.webp';
-import epowertrain1 from '@images/slideshow/powertrain/e-powertrain/1.webp';
-import epowertrain2 from '@images/slideshow/powertrain/e-powertrain/2.webp';
+// Import CMS data
+import technologiesHeroData from '@data/technologiesHero.json';
+import technologiesListData from '@data/technologies.json';
+import technologiesCTAData from '@data/technologiesCTA.json';
+import { getImage } from 'astro:assets';
 
-import chassis1 from '@images/slideshow/chassis/1.webp';
-import chassis2 from '@images/slideshow/chassis/2.webp';
-import chassis3 from '@images/slideshow/chassis/3.webp';
-import chassis4 from '@images/slideshow/chassis/4.webp';
-import chassis5 from '@images/slideshow/chassis/5.webp';
-import chassis6 from '@images/slideshow/chassis/6.webp';
-import chassis7 from '@images/slideshow/chassis/7.webp';
-import chassis8 from '@images/slideshow/chassis/8.webp';
-import chassis9 from '@images/slideshow/chassis/9.webp';
+// Process images from CMS paths
+const processedTechnologies = await Promise.all(
+  technologiesListData.technologies.map(async (tech) => {
+    const processedImages = await Promise.all(
+      tech.images.map(async (img) => {
+        try {
+          // Dynamically import the image
+          const imageModule = await import(/* @vite-ignore */ img.src.replace('@assets', '/src/assets'));
+          const optimizedImage = await getImage({ src: imageModule.default, format: 'webp' });
+          return {
+            src: optimizedImage.src,
+            alt: img.alt
+          };
+        } catch (error) {
+          console.error(`Failed to load image: ${img.src}`, error);
+          return img; // Return original if import fails
+        }
+      })
+    );
+    
+    return {
+      ...tech,
+      images: processedImages
+    };
+  })
+);
 
-import interior1 from '@images/slideshow/interior_parts/1.webp';
-import interior2 from '@images/slideshow/interior_parts/2.webp';
-import interior3 from '@images/slideshow/interior_parts/3.webp';
-import interior4 from '@images/slideshow/interior_parts/4.webp';
-
-import thermal1 from '@images/slideshow/thermal_management/1.webp';
-import thermal2 from '@images/slideshow/thermal_management/2.webp';
-import thermal3 from '@images/slideshow/thermal_management/3.webp';
-
-// Data for the technologies sections
+// Use processed data
 const technologiesData = {
-  title: 'Technologies',
-  description:
-    'We work mainly in the fields of chassis and thermal management, but our know-how can be adapted to meet the many technical challenges posed by developments in the automotive industry.',
-  technologies: [
-    {
-      title: 'Powertrain',
-      icon: 'zap',
-      description:
-        'Advanced powertrain solutions including electric and hybrid systems, engine optimization, and transmission technologies.',
-      features: [
-        'Electric and hybrid powertrains',
-        'Advanced combustion engines',
-        'Transmission systems',
-        'Energy management systems',
-      ],
-      images: [
-        { src: powertrain1.src, alt: 'Powertrain technology 1' },
-        { src: powertrain2.src, alt: 'Powertrain technology 2' },
-        { src: powertrain3.src, alt: 'Powertrain technology 3' },
-        { src: powertrain4.src, alt: 'Powertrain technology 4' },
-        { src: powertrain5.src, alt: 'Powertrain technology 5' },
-        { src: epowertrain1.src, alt: 'E-Powertrain technology 1' },
-        { src: epowertrain2.src, alt: 'E-Powertrain technology 2' },
-      ],
-    },
-    {
-      title: 'Chassis',
-      icon: 'layers',
-      description:
-        'Comprehensive chassis development including suspension systems, steering, and vehicle dynamics optimization.',
-      features: ['Active suspension systems', 'Steering technologies', 'Braking systems', 'Vehicle dynamics control'],
-      images: [
-        { src: chassis1.src, alt: 'Chassis technology 1' },
-        { src: chassis2.src, alt: 'Chassis technology 2' },
-        { src: chassis3.src, alt: 'Chassis technology 3' },
-        { src: chassis4.src, alt: 'Chassis technology 4' },
-        { src: chassis5.src, alt: 'Chassis technology 5' },
-        { src: chassis6.src, alt: 'Chassis technology 6' },
-        { src: chassis7.src, alt: 'Chassis technology 7' },
-        { src: chassis8.src, alt: 'Chassis technology 8' },
-        { src: chassis9.src, alt: 'Chassis technology 9' },
-      ],
-    },
-    {
-      title: 'Interior Parts',
-      icon: 'box',
-      description: 'Interior components and systems focusing on comfort, safety, and user experience.',
-      features: [
-        'Seating systems',
-        'Dashboard and console components',
-        'Safety systems integration',
-        'Interior lighting solutions',
-      ],
-      images: [
-        { src: interior1.src, alt: 'Interior parts 1' },
-        { src: interior2.src, alt: 'Interior parts 2' },
-        { src: interior3.src, alt: 'Interior parts 3' },
-        { src: interior4.src, alt: 'Interior parts 4' },
-      ],
-    },
-    {
-      title: 'Thermal Management',
-      icon: 'thermometer',
-      description: 'Complete thermal management solutions for vehicle efficiency and comfort.',
-      features: ['Battery thermal management', 'HVAC systems', 'Engine cooling systems', 'Heat recovery solutions'],
-      images: [
-        { src: thermal1.src, alt: 'Thermal management 1' },
-        { src: thermal2.src, alt: 'Thermal management 2' },
-        { src: thermal3.src, alt: 'Thermal management 3' },
-      ],
-    },
-  ],
+  title: technologiesHeroData.title,
+  description: technologiesHeroData.description,
+  technologies: processedTechnologies
 };
+
+const ctaData = technologiesCTAData;
 
 // SEO metadata for the page
 const seo = {
@@ -185,16 +123,16 @@ const schema: WithContext<Thing> = {
   {/* Call to Action Section */}
   <section class="mx-auto max-w-[85rem] px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
     <div class="relative rounded-3xl bg-teal-200 p-8 text-center sm:p-12">
-      <h2 class="text-2xl font-semibold text-balance text-slate-800 md:text-3xl">Ready to discuss your project?</h2>
+      <h2 class="text-2xl font-semibold text-balance text-slate-800 md:text-3xl">{ctaData.title}</h2>
       <p class="mt-4 text-lg text-pretty text-slate-700">
-        Our team of experts is ready to help you navigate the complexities of automotive technology development.
+        {ctaData.description}
       </p>
       <div class="mt-8">
         <a
-          href="/contact"
+          href={ctaData.button.href}
           class="inline-flex items-center rounded-xl bg-teal-600 px-6 py-3 text-base font-medium text-white shadow-sm transition-all duration-150 hover:bg-teal-700 focus:bg-teal-700 focus:outline-hidden"
         >
-          Contact our experts
+          {ctaData.button.text}
           <Icon name="chevronRight" class="ml-2 size-5" />
         </a>
       </div>

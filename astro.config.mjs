@@ -32,6 +32,7 @@ export default defineConfig({
         '@': '/src',
         '@common': '/src/components/common',
         '@megaMenu': '/src/components/common/MegaMenu',
+        '@assets': '/src/assets',
         '@images': '/src/assets/images',
         '@layout': '/src/layout',
         '@ui': '/src/components/ui',

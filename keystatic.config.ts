@@ -149,7 +149,7 @@ export default config({
           src: fields.image({
             label: "Hero image",
             directory: "src/assets/images",
-            publicPath: "@images/",
+            publicPath: "@assets/images/",
           }),
           alt: fields.text({ 
             label: "Image alt text",
@@ -186,7 +186,7 @@ export default config({
                   src: fields.image({
                     label: "Feature image",
                     directory: "src/assets/images",
-                    publicPath: "@images/",
+                    publicPath: "@assets/images/",
                   }),
                   alt: fields.text({ 
                     label: "Image alt text",
@@ -243,7 +243,7 @@ export default config({
             src: fields.image({
               label: "Image",
               directory: "src/assets/images",
-              publicPath: "@images/",
+              publicPath: "@assets/images/",
             }),
             alt: fields.text({ 
               label: "Image alt text",
@@ -265,7 +265,7 @@ export default config({
             src: fields.image({
               label: "Image",
               directory: "src/assets/images",
-              publicPath: "@images/",
+              publicPath: "@assets/images/",
             }),
             alt: fields.text({ 
               label: "Image alt text",
@@ -287,7 +287,7 @@ export default config({
             src: fields.image({
               label: "Image",
               directory: "src/assets/images",
-              publicPath: "@images/",
+              publicPath: "@assets/images/",
             }),
             alt: fields.text({ 
               label: "Image alt text",
@@ -310,7 +310,7 @@ export default config({
             src: fields.image({
               label: "Image",
               directory: "src/assets/images",
-              publicPath: "@images/",
+              publicPath: "@assets/images/",
             }),
             alt: fields.text({ 
               label: "Image alt text",
@@ -524,6 +524,179 @@ export default config({
           label: "Second paragraph",
           multiline: true,
           defaultValue: "We build long-term relationships based on trust, transparency and concrete results. Our added value lies in our ability to bridge the gap between cultures, teams and technical issues, facilitating exchanges and the development of ambitious projects."
+        }),
+      },
+    }),
+
+    // ========== TECHNOLOGIES PAGE ==========
+    technologiesHero: singleton({
+      label: "Technologies - Hero Section",
+      path: "src/data/technologiesHero",
+      format: { data: "json" },
+      schema: {
+        title: fields.text({
+          label: "Main title",
+          defaultValue: "Technologies"
+        }),
+        description: fields.text({
+          label: "Description",
+          multiline: true,
+          defaultValue: "We work mainly in the fields of chassis and thermal management, but our know-how can be adapted to meet the many technical challenges posed by developments in the automotive industry."
+        }),
+      },
+    }),
+    technologiesList: singleton({
+      label: "Technologies - Technology Sections",
+      path: "src/data/technologies",
+      format: { data: "json" },
+      schema: {
+        technologies: fields.array(
+          fields.object({
+            title: fields.text({ label: "Technology title" }),
+            icon: fields.select({
+              label: "Icon",
+              options: [
+                { label: "Zap (Powertrain)", value: "zap" },
+                { label: "Layers (Chassis)", value: "layers" },
+                { label: "Box (Interior)", value: "box" },
+                { label: "Thermometer (Thermal)", value: "thermometer" },
+              ],
+              defaultValue: "zap"
+            }),
+            description: fields.text({ 
+              label: "Technology description",
+              multiline: true
+            }),
+            features: fields.array(
+              fields.text({ label: "Feature" }),
+              {
+                label: "Features list",
+              }
+            ),
+            images: fields.array(
+              fields.object({
+                src: fields.image({
+                  label: "Slideshow image",  
+                  directory: "src/assets/images",
+                  publicPath: "@assets/images/",
+                }),
+                alt: fields.text({ 
+                  label: "Image alt text",
+                  defaultValue: ""
+                }),
+              }),
+              {
+                label: "Slideshow images",
+              }
+            ),
+          }),
+          {
+            label: "Technologies",
+          }
+        ),
+      },
+    }),
+    technologiesCTA: singleton({
+      label: "Technologies - Call to Action",
+      path: "src/data/technologiesCTA",
+      format: { data: "json" },
+      schema: {
+        title: fields.text({
+          label: "CTA title",
+          defaultValue: "Ready to discuss your project?"
+        }),
+        description: fields.text({
+          label: "CTA description",
+          multiline: true,
+          defaultValue: "Our team of experts is ready to help you navigate the complexities of automotive technology development."
+        }),
+        button: fields.object({
+          text: fields.text({
+            label: "Button text",
+            defaultValue: "Contact our experts"
+          }),
+          href: fields.text({
+            label: "Button URL",
+            defaultValue: "/contact"
+          }),
+        }),
+      },
+    }),
+
+    // ========== CONTACT PAGE ==========
+    contactHero: singleton({
+      label: "Contact - Hero Section",
+      path: "src/data/contactHero",
+      format: { data: "json" },
+      schema: {
+        title: fields.text({
+          label: "Main title",
+          defaultValue: "Contact us"
+        }),
+        subtitle: fields.text({
+          label: "Subtitle",
+          multiline: true,
+          defaultValue: "Get in touch with our experts in France and Italy. We're here to help you navigate the automotive industry."
+        }),
+      },
+    }),
+    contactOffices: singleton({
+      label: "Contact - Office Locations",
+      path: "src/data/contactOffices",
+      format: { data: "json" },
+      schema: {
+        offices: fields.array(
+          fields.object({
+            id: fields.text({ 
+              label: "Office ID (lowercase)",
+              defaultValue: "france"
+            }),
+            office: fields.text({ 
+              label: "Office name",
+              defaultValue: "France Office"
+            }),
+            address: fields.text({ 
+              label: "Office address",
+              defaultValue: "123 Avenue des Champs-Élysées, 75008 Paris, France"
+            }),
+            email: fields.text({ 
+              label: "Contact email",
+              defaultValue: "contact@gmtec.eu"
+            }),
+            avatarBackground: fields.text({
+              label: "Avatar background color (hex without #)",
+              defaultValue: "5aaeae",
+              description: "Background color for the generated avatar"
+            }),
+          }),
+          {
+            label: "Office locations",
+            itemLabel: props => props.fields.office.value || 'Office'
+          }
+        ),
+      },
+    }),
+    contactLinkedIn: singleton({
+      label: "Contact - LinkedIn Section",
+      path: "src/data/contactLinkedIn",
+      format: { data: "json" },
+      schema: {
+        title: fields.text({
+          label: "Section title",
+          defaultValue: "Stay Connected"
+        }),
+        description: fields.text({
+          label: "Section description",
+          multiline: true,
+          defaultValue: "Follow us on LinkedIn for the latest automotive industry insights and company updates."
+        }),
+        linkedInUrl: fields.text({
+          label: "LinkedIn profile URL",
+          defaultValue: "https://www.linkedin.com/company/gmtec-group"
+        }),
+        buttonText: fields.text({
+          label: "Button text",
+          defaultValue: "Visit our LinkedIn page"
         }),
       },
     }),

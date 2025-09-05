@@ -1,0 +1,18 @@
+{
+  "offices": [
+    {
+      "id": "france",
+      "office": "France Office",
+      "address": "123 Avenue des Champs-Élysées, 75008 Paris, France",
+      "email": "contact@gmtec.eu",
+      "avatarBackground": "5aaeae"
+    },
+    {
+      "id": "italy",
+      "office": "Italy Office", 
+      "address": "Via Roma 456, 20121 Milano, Italy",
+      "email": "contact@gmtec.eu",
+      "avatarBackground": "087f7f"
+    }
+  ]
+}

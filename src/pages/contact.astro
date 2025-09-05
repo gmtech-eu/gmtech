@@ -3,27 +3,18 @@ import BaseLayout from '@layout/BaseLayout.astro';
 import Icon from '@ui/icons/Icon.astro';
 import type { Thing, WithContext } from 'schema-dts';
 
-const contacts = [
-  {
-    id: 'france',
-    office: 'France Office',
-    address: '123 Avenue des Champs-Élysées, 75008 Paris, France',
-    email: 'contact@gmtec.eu',
-    avatarUrl: 'https://ui-avatars.com/api/?name=France+Office&background=5aaeae&color=fff&size=200',
-  },
-  {
-    id: 'italy',
-    office: 'Italy Office',
-    address: 'Via Roma 456, 20121 Milano, Italy',
-    email: 'contact@gmtec.eu',
-    avatarUrl: 'https://ui-avatars.com/api/?name=Italy+Office&background=087f7f&color=fff&size=200',
-  },
-];
+// Import CMS data
+import contactHeroData from '@data/contactHero.json';
+import contactOfficesData from '@data/contactOffices.json';
+import contactLinkedInData from '@data/contactLinkedIn.json';
 
-// Content for the page title and subtitle
-const title = 'Contact us';
-const subTitle =
-  "Get in touch with our experts in France and Italy. We're here to help you navigate the automotive industry.";
+// Generate avatar URLs for each office
+const contacts = contactOfficesData.offices.map((office) => ({
+  ...office,
+  avatarUrl: `https://ui-avatars.com/api/?name=${encodeURIComponent(office.office)}&background=${office.avatarBackground}&color=fff&size=200`
+}));
+
+const { title, subtitle } = contactHeroData;
 
 // SEO metadata for the page
 const seo = {
@@ -57,7 +48,7 @@ const schema: WithContext<Thing> = {
       <h2 class="text-4xl text-balance text-slate-800 sm:text-5xl md:text-6xl lg:text-7xl">
         {title}
       </h2>
-      <p class="mt-1 ml-1 text-slate-600">{subTitle}</p>
+      <p class="mt-1 ml-1 text-slate-600">{subtitle}</p>
     </div>
 
     <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12">
@@ -102,17 +93,17 @@ const schema: WithContext<Thing> = {
     <div class="mt-16">
       <div class="rounded-3xl bg-teal-200 p-8 text-center sm:p-12">
         <Icon name="linkedin" class="mx-auto size-12 text-teal-700" />
-        <h3 class="mt-4 text-2xl font-semibold text-slate-800">Stay Connected</h3>
+        <h3 class="mt-4 text-2xl font-semibold text-slate-800">{contactLinkedInData.title}</h3>
         <p class="mt-2 text-slate-700">
-          Follow us on LinkedIn for the latest automotive industry insights and company updates.
+          {contactLinkedInData.description}
         </p>
         <a
-          href="https://www.linkedin.com/company/gmtec-group"
+          href={contactLinkedInData.linkedInUrl}
           target="_blank"
           rel="noopener noreferrer"
           class="mt-6 inline-flex items-center rounded-xl bg-teal-600 px-6 py-3 text-base font-medium text-white shadow-sm transition-all duration-150 hover:bg-teal-700 focus:bg-teal-700 focus:outline-hidden"
         >
-          Visit our LinkedIn page
+          {contactLinkedInData.buttonText}
           <Icon name="externalLink" class="ml-2 size-5" />
         </a>
       </div>
