@@ -25,9 +25,9 @@ const craftedBy = { name: 'valentin berceaux', url: 'v.berceaux@gmail.com' };
   <div class="mx-auto mt-auto w-full max-w-[85rem] px-4 pb-10 sm:px-6 lg:px-8">
     <hr class="mb-10 border-slate-200" />
 
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
       {/* Company Information */}
-      <div class="self-center">
+      <div class="md:col-span-1">
         <a
           href="/"
           class="flex-none text-xl font-semibold text-slate-700 uppercase focus:opacity-80 focus:outline-hidden"
@@ -35,13 +35,23 @@ const craftedBy = { name: 'valentin berceaux', url: 'v.berceaux@gmail.com' };
         >
           {companyName}
         </a>
-        <p class="mt-5 text-pretty text-slate-600">
+        <p class="mt-4 text-pretty text-slate-600">
           {companyDescription}
         </p>
       </div>
 
+      {/* Quick Links */}
+      <div class="md:col-span-1">
+        <h3 class="font-semibold text-slate-700">Quick Links</h3>
+        <ul class="mt-3 space-y-2 text-sm text-slate-600">
+          <li><a href="/about" class="transition-colors duration-300 hover:text-slate-500">Group</a></li>
+          <li><a href="/technologies" class="transition-colors duration-300 hover:text-slate-500">Technologies</a></li>
+          <li><a href="/contact" class="transition-colors duration-300 hover:text-slate-500">Contact</a></li>
+        </ul>
+      </div>
+
       {/* Contact Information Section */}
-      <div class="self-center md:text-right">
+      <div class="md:col-span-1">
         <ContactInfo companyName={companyName} {...contactDetails} />
       </div>
     </div>

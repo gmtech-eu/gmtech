@@ -4,23 +4,24 @@ const { companyName, address, phone, email, website } = Astro.props;
 ---
 
 <div>
-  <h3 class="font-semibold text-slate-700 md:text-right">Contact Us</h3>
-  <ul class="mt-3 space-y-2 text-sm text-slate-600 md:text-right">
-    <li>{companyName}</li>
-    <li>{address}</li>
-    <li class="flex items-center gap-x-2 md:justify-end">
-      <Icon name="mobile" />
-      <a href={'tel:+' + phone.replace(/[^+\d]/g, '')} class="transition-colors duration-300 hover:text-slate-500"
-        >{phone}</a
-      >
+  <h3 class="font-semibold text-slate-700">Contact</h3>
+  <ul class="mt-3 space-y-2 text-sm text-slate-600">
+    <li class="flex items-center gap-x-2">
+      <Icon name="mapPin" />
+      <span>{address}</span>
     </li>
-    <li class="flex items-center gap-x-2 md:justify-end">
+    <li class="flex items-center gap-x-2">
       <Icon name="email" />
-      <a href={'mailto:' + email} class="transition-colors duration-300 hover:text-slate-500">{email}</a>
+      <a href="mailto:contact@gmtec.eu" class="transition-colors duration-300 hover:text-slate-500">Send us a message</a>
     </li>
-    <li class="flex items-center gap-x-2 md:justify-end">
-      <Icon name="world" />
-      <a href={'https://' + website} class="transition-colors duration-300 hover:text-slate-500">{website}</a>
+    <li class="flex items-center gap-x-2">
+      <Icon name="linkedin" />
+      <a
+        href="https://www.linkedin.com/company/gmtec-group"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="transition-colors duration-300 hover:text-slate-500">Follow us</a
+      >
     </li>
   </ul>
 </div>
