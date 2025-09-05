@@ -1,53 +1,12 @@
 ---
 import BaseLayout from '@layout/BaseLayout.astro';
 import type { Thing, WithContext } from 'schema-dts';
+import aboutHeroData from '@data/aboutHero.json';
+import aboutExpertiseData from '@data/aboutExpertise.json';
+import aboutPartnersData from '@data/aboutPartners.json';
 
-// Data describing the "About" section content
-const aboutData = {
-  title: 'Why outsource?',
-  description:
-    'Entrusting your sales force to a specialized partner transforms fixed costs into variable costs, guarantees immediate access to seasoned sales people and frees up your in-house teams to focus on innovation and operations. You gain in flexibility, reduce your structural costs and get your offers to market faster.',
-  statistics: [
-    {
-      label: 'Years of Experience',
-      value: '20+',
-    },
-    {
-      label: 'Continents Covered',
-      value: '4+',
-    },
-    {
-      label: 'Active Partners',
-      value: '10+',
-    },
-    {
-      label: 'Projects Delivered per year',
-      value: '30+',
-    },
-  ],
-};
-
-// Data describing the expertise section
-const expertiseData = {
-  title: 'Major Advantages:',
-  expertise: [
-    {
-      title: 'Multi-channel prospecting',
-      description:
-        'In-depth lead qualification, event-driven acceleration plans, contract negotiation and conclusion, key account follow-up and opening of new territories.',
-    },
-    {
-      title: 'Reduced sales costs',
-      description:
-        'Instant adaptation of resources to market fluctuations, access to experienced talent without recruitment delays, and operational deployment in a matter of weeks.',
-    },
-    {
-      title: 'When is it relevant?',
-      description:
-        'SMEs lacking time, budget or expertise. Technology companies needing to convert innovation into sales. Companies in export or expansion phase. Established groups benchmarking internal performance.',
-    },
-  ],
-};
+const aboutData = aboutHeroData;
+const expertiseData = aboutExpertiseData;
 
 // SEO metadata for the page
 const seo = {
@@ -135,16 +94,12 @@ const schema: WithContext<Thing> = {
   {/* Partners Section */}
   <section class="mx-auto max-w-[85rem] px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
     <div class="mx-auto max-w-2xl text-center lg:mb-14">
-      <h2 class="text-2xl font-semibold text-balance text-slate-800 md:text-3xl md:leading-tight">Our Partners</h2>
+      <h2 class="text-2xl font-semibold text-balance text-slate-800 md:text-3xl md:leading-tight">{aboutPartnersData.title}</h2>
       <p class="mt-1 text-pretty text-slate-600">
-        At GMTEC, we support a wide range of partners, from international groups to mid-sized companies. Whatever their
-        profile, we provide them with on-the-ground expertise, a tailor-made approach and the proximity they need to
-        boost their commercial effectiveness in Europe.
+        {aboutPartnersData.firstParagraph}
       </p>
       <p class="mt-4 text-pretty text-slate-600">
-        We build long-term relationships based on trust, transparency and concrete results. Our added value lies in our
-        ability to bridge the gap between cultures, teams and technical issues, facilitating exchanges and the
-        development of ambitious projects.
+        {aboutPartnersData.secondParagraph}
       </p>
     </div>
   </section>

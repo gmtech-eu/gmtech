@@ -456,6 +456,77 @@ export default config({
         }),
       },
     }),
+
+    // ========== ABOUT PAGE ==========
+    aboutHero: singleton({
+      label: "About - Hero Section",
+      path: "src/data/aboutHero",
+      format: { data: "json" },
+      schema: {
+        title: fields.text({
+          label: "Main title",
+          defaultValue: "Why outsource?"
+        }),
+        description: fields.text({
+          label: "Description",
+          multiline: true,
+          defaultValue: "Entrusting your sales force to a specialized partner transforms fixed costs into variable costs, guarantees immediate access to seasoned sales people and frees up your in-house teams to focus on innovation and operations. You gain in flexibility, reduce your structural costs and get your offers to market faster."
+        }),
+        statistics: fields.array(
+          fields.object({
+            label: fields.text({ label: "Statistic label" }),
+            value: fields.text({ label: "Statistic value" }),
+          }),
+          {
+            label: "Statistics",
+          }
+        ),
+      },
+    }),
+    aboutExpertise: singleton({
+      label: "About - Expertise Section",
+      path: "src/data/aboutExpertise",
+      format: { data: "json" },
+      schema: {
+        title: fields.text({
+          label: "Section title",
+          defaultValue: "Major Advantages:"
+        }),
+        expertise: fields.array(
+          fields.object({
+            title: fields.text({ label: "Expertise title" }),
+            description: fields.text({ 
+              label: "Expertise description",
+              multiline: true
+            }),
+          }),
+          {
+            label: "Expertise items",
+          }
+        ),
+      },
+    }),
+    aboutPartners: singleton({
+      label: "About - Partners Section",
+      path: "src/data/aboutPartners",
+      format: { data: "json" },
+      schema: {
+        title: fields.text({
+          label: "Section title",
+          defaultValue: "Our Partners"
+        }),
+        firstParagraph: fields.text({
+          label: "First paragraph",
+          multiline: true,
+          defaultValue: "At GMTEC, we support a wide range of partners, from international groups to mid-sized companies. Whatever their profile, we provide them with on-the-ground expertise, a tailor-made approach and the proximity they need to boost their commercial effectiveness in Europe."
+        }),
+        secondParagraph: fields.text({
+          label: "Second paragraph",
+          multiline: true,
+          defaultValue: "We build long-term relationships based on trust, transparency and concrete results. Our added value lies in our ability to bridge the gap between cultures, teams and technical issues, facilitating exchanges and the development of ambitious projects."
+        }),
+      },
+    }),
   },
 
   collections: {},
