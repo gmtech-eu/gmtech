@@ -1,0 +1,39 @@
+{
+  "title": "Our mission",
+  "subtitle": "We offer tailor-made Business Development support in the Automotive OE (Original Equipment) sector, adapting ourselves to the needs of our partners.",
+  "localExpertise": {
+    "title": "Local Expertise",
+    "description": "Deep market knowledge in France, Italy, Benelux and Spain with on-the-ground presence and cultural understanding",
+    "image": {
+      "src": "@images/cultural_bridge_2.webp",
+      "alt": "Local Expertise"
+    }
+  },
+  "projectManagement": {
+    "title": "Complete Project Management",
+    "description": "From project award to <span class=\"font-bold\">SOP</span> (Start of Production), we provide comprehensive program management throughout the development phase and series production.",
+    "image": {
+      "src": "@images/program_management_2.webp",
+      "alt": "Project Management"
+    }
+  },
+  "agileResponse": {
+    "title": "Agile Response",
+    "description": "We intervene effectively in the event of engineering modifications, technical obstacles, quality or logistics issues. Our lean structure ensures rapid adaptation.",
+    "image": {
+      "src": "@images/agile_response.webp",
+      "alt": "Agile Response"
+    }
+  },
+  "beyondSales": {
+    "title": "Beyond Sales Support",
+    "listItems": [
+      "Recruitment assistance for technical profiles and resident engineers",
+      "Network facilitation for industrial partnerships and joint ventures"
+    ],
+    "image": {
+      "src": "@images/beyond_sales_support.webp",
+      "alt": "Beyond Sales Support"
+    }
+  }
+}

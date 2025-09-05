@@ -1,47 +1,55 @@
 ---
 import { Image } from 'astro:assets';
+import featureBentoData from '@data/featureBento.json';
 
-import image_3 from '@images/agile_response.webp';
-import image_4 from '@images/beyond_sales_support.webp';
+// Import default images as fallbacks
 import image_1 from '@images/cultural_bridge_2.webp';
 import image_2 from '@images/program_management_2.webp';
+import image_3 from '@images/agile_response.webp';
+import image_4 from '@images/beyond_sales_support.webp';
 
-// Content for the section title and subtitle
-const title = `Our mission`;
-const subTitle = `We offer tailor-made Business Development support in the Automotive OE (Original Equipment) sector, adapting ourselves to the needs of our partners.`;
+const { title, subtitle, localExpertise, projectManagement, agileResponse, beyondSales } = featureBentoData;
 
+// Map to associate default images
+const imageMap: Record<string, any> = {
+  '@images/cultural_bridge_2.webp': image_1,
+  '@images/program_management_2.webp': image_2,
+  '@images/agile_response.webp': image_3,
+  '@images/beyond_sales_support.webp': image_4,
+};
+
+// Process features with fallback images
 const features = [
   {
     id: 'local-expertise',
-    title: 'Local Expertise',
-    description:
-      'Deep market knowledge in France, Italy, Benelux and Spain with on-the-ground presence and cultural understanding',
-    image: image_1,
+    title: localExpertise.title,
+    description: localExpertise.description,
+    image: imageMap[localExpertise.image.src] || image_1,
+    alt: localExpertise.image.alt,
     layout: 'horizontal',
   },
   {
     id: 'project-management',
-    title: 'Complete Project Management',
-    description: `From project award to <span class="font-bold">SOP</span> (Start of Production), we provide comprehensive program management throughout the development phase and series production.`,
-    image: image_2,
+    title: projectManagement.title,
+    description: projectManagement.description,
+    image: imageMap[projectManagement.image.src] || image_2,
+    alt: projectManagement.image.alt,
     layout: 'vertical',
   },
   {
     id: 'agile-response',
-    title: 'Agile Response',
-    description:
-      'We intervene effectively in the event of engineering modifications, technical obstacles, quality or logistics issues. Our lean structure ensures rapid adaptation.',
-    image: image_3,
+    title: agileResponse.title,
+    description: agileResponse.description,
+    image: imageMap[agileResponse.image.src] || image_3,
+    alt: agileResponse.image.alt,
     layout: 'vertical',
   },
   {
     id: 'beyond-sales',
-    title: 'Beyond Sales Support',
-    listItems: [
-      'Recruitment assistance for technical profiles and resident engineers',
-      'Network facilitation for industrial partnerships and joint ventures',
-    ],
-    image: image_4,
+    title: beyondSales.title,
+    listItems: beyondSales.listItems,
+    image: imageMap[beyondSales.image.src] || image_4,
+    alt: beyondSales.image.alt,
     layout: 'horizontal',
   },
 ];
@@ -54,7 +62,7 @@ const features = [
       <Fragment set:html={title} />
     </h2>
     <p class="mt-1 text-pretty text-slate-600">
-      <Fragment set:html={subTitle} />
+      <Fragment set:html={subtitle} />
     </p>
   </div>
 
@@ -76,7 +84,7 @@ const features = [
               <Image
                 class="w-full rounded-lg object-contain shadow-md"
                 src={features[0].image}
-                alt={`Illustration for ${features[0].title}`}
+                alt={features[0].alt}
               />
             </div>
           </div>
@@ -101,7 +109,7 @@ const features = [
                     <Image
                       class="w-full rounded-lg object-contain shadow-md"
                       src={feature.image}
-                      alt={`Illustration for ${feature.title}`}
+                      alt={feature.alt}
                     />
                   </div>
                 </div>
@@ -142,7 +150,7 @@ const features = [
               <Image
                 class="w-full rounded-lg object-contain shadow-md"
                 src={features[3].image}
-                alt={`Illustration for ${features[3].title}`}
+                alt={features[3].alt}
               />
             </div>
           </div>

@@ -215,6 +215,111 @@ export default config({
         ),
       },
     }),
+    homeBento: singleton({
+      label: "Home - Mission Section",
+      path: "src/data/featureBento",
+      format: { data: "json" },
+      schema: {
+        title: fields.text({
+          label: "Section title",
+          defaultValue: "Our mission"
+        }),
+        subtitle: fields.text({
+          label: "Section description",
+          multiline: true,
+          defaultValue: "We offer tailor-made Business Development support in the Automotive OE (Original Equipment) sector, adapting ourselves to the needs of our partners."
+        }),
+        localExpertise: fields.object({
+          title: fields.text({ 
+            label: "Title",
+            defaultValue: "Local Expertise"
+          }),
+          description: fields.text({ 
+            label: "Description",
+            multiline: true,
+            defaultValue: "Deep market knowledge in France, Italy, Benelux and Spain with on-the-ground presence and cultural understanding"
+          }),
+          image: fields.object({
+            src: fields.image({
+              label: "Image",
+              directory: "src/assets/images",
+              publicPath: "@images/",
+            }),
+            alt: fields.text({ 
+              label: "Image alt text",
+              defaultValue: "Local Expertise"
+            }),
+          }),
+        }),
+        projectManagement: fields.object({
+          title: fields.text({ 
+            label: "Title",
+            defaultValue: "Complete Project Management"
+          }),
+          description: fields.text({ 
+            label: "Description",
+            multiline: true,
+            defaultValue: "From project award to <span class=\"font-bold\">SOP</span> (Start of Production), we provide comprehensive program management throughout the development phase and series production."
+          }),
+          image: fields.object({
+            src: fields.image({
+              label: "Image",
+              directory: "src/assets/images",
+              publicPath: "@images/",
+            }),
+            alt: fields.text({ 
+              label: "Image alt text",
+              defaultValue: "Project Management"
+            }),
+          }),
+        }),
+        agileResponse: fields.object({
+          title: fields.text({ 
+            label: "Title",
+            defaultValue: "Agile Response"
+          }),
+          description: fields.text({ 
+            label: "Description",
+            multiline: true,
+            defaultValue: "We intervene effectively in the event of engineering modifications, technical obstacles, quality or logistics issues. Our lean structure ensures rapid adaptation."
+          }),
+          image: fields.object({
+            src: fields.image({
+              label: "Image",
+              directory: "src/assets/images",
+              publicPath: "@images/",
+            }),
+            alt: fields.text({ 
+              label: "Image alt text",
+              defaultValue: "Agile Response"
+            }),
+          }),
+        }),
+        beyondSales: fields.object({
+          title: fields.text({ 
+            label: "Title",
+            defaultValue: "Beyond Sales Support"
+          }),
+          listItems: fields.array(
+            fields.text({ label: "List item" }),
+            {
+              label: "Support items",
+            }
+          ),
+          image: fields.object({
+            src: fields.image({
+              label: "Image",
+              directory: "src/assets/images",
+              publicPath: "@images/",
+            }),
+            alt: fields.text({ 
+              label: "Image alt text",
+              defaultValue: "Beyond Sales Support"
+            }),
+          }),
+        }),
+      },
+    }),
   },
 
   collections: {},
