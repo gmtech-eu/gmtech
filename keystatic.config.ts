@@ -26,32 +26,87 @@ export default config({
       format: { data: "json" },
       schema: {
         logoHighlightedText: fields.text({
-          label: "Texte mis en évidence",
+          label: "Logo highlighted text",
           defaultValue: "GM",
         }),
         logoText: fields.text({
-          label: "Texte du logo",
+          label: "Logo text",
           defaultValue: "TEC",
         }),
         homeLink: fields.object({
           label: fields.text({
-            label: "Libellé du lien d'accueil",
+            label: "Home link label",
             defaultValue: "Home",
           }),
           href: fields.text({
-            label: "URL du lien d'accueil",
+            label: "Home link URL",
             defaultValue: "/",
           }),
         }),
         navigationLinks: fields.array(
           fields.object({
-            label: fields.text({ label: "Libellé" }),
+            label: fields.text({ label: "Label" }),
             href: fields.text({ label: "URL" }),
           }),
           {
-            label: "Liens de navigation",
+            label: "Navigation links",
           },
         ),
+      },
+    }),
+    footer: singleton({
+      label: "Footer",
+      path: "src/data/footer",
+      format: { data: "json" },
+      schema: {
+        companyInfo: fields.object({
+          name: fields.text({
+            label: "Company name",
+            defaultValue: "GMTEC Group",
+          }),
+          description: fields.text({
+            label: "Company description",
+            defaultValue:
+              "GMTEC Group is a consulting company providing expertise in the Automotive sector since 2003.",
+          }),
+        }),
+        quickLinks: fields.object({
+          title: fields.text({
+            label: "Section title",
+            defaultValue: "Quick Links",
+          }),
+          links: fields.array(
+            fields.object({
+              label: fields.text({ label: "Label" }),
+              href: fields.text({ label: "URL" }),
+            }),
+            {
+              label: "Quick links",
+            },
+          ),
+        }),
+        contactInfo: fields.object({
+          address: fields.text({
+            label: "Address",
+            defaultValue: "France & Italy",
+          }),
+        }),
+        copyright: fields.object({
+          companyName: fields.text({
+            label: "Company name for copyright",
+            defaultValue: "GMTEC Group",
+          }),
+          craftedBy: fields.object({
+            name: fields.text({
+              label: "Creator name",
+              defaultValue: "valentin berceaux",
+            }),
+            email: fields.text({
+              label: "Creator email",
+              defaultValue: "v.berceaux@gmail.com",
+            }),
+          }),
+        }),
       },
     }),
   },

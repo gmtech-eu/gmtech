@@ -1,0 +1,33 @@
+{
+  "companyInfo": {
+    "name": "GMTEC Group",
+    "description": "GMTEC Group is a consulting company providing expertise in the Automotive sector since 2003."
+  },
+  "quickLinks": {
+    "title": "Quick Links",
+    "links": [
+      {
+        "label": "Group",
+        "href": "/about"
+      },
+      {
+        "label": "Technologies",
+        "href": "/technologies"
+      },
+      {
+        "label": "Contact",
+        "href": "/contact"
+      }
+    ]
+  },
+  "contactInfo": {
+    "address": "France & Italy"
+  },
+  "copyright": {
+    "companyName": "GMTEC Group",
+    "craftedBy": {
+      "name": "valentin berceaux",
+      "email": "v.berceaux@gmail.com"
+    }
+  }
+}
