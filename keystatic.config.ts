@@ -1,27 +1,15 @@
 import { config, fields, singleton } from "@keystatic/core";
 
-// https://keystatic.com/docs/github-mode
-// Set storage mode: "local" for dev, "github" for production
-const KEYSTATIC_STORAGE_MODE =
-  process.env.NODE_ENV === "production" ? "github" : "local";
-
-// GitHub repository details
-const GITHUB_REPO_OWNER = "gmtech-eu";
-const GITHUB_REPO_NAME = "gmtech";
+// https://keystatic.com/docs/cloud
+// Using Keystatic Cloud for simplified authentication
 
 export default config({
-  storage:
-    KEYSTATIC_STORAGE_MODE === "github"
-      ? {
-          kind: "github",
-          repo: {
-            owner: GITHUB_REPO_OWNER,
-            name: GITHUB_REPO_NAME,
-          },
-        }
-      : {
-          kind: "local",
-        },
+  storage: {
+    kind: "cloud",
+  },
+  cloud: {
+    project: "gmtech/website", // Format: [TEAM_NAME]/[PROJECT_NAME]
+  },
 
   singletons: {
     // ========== GLOBAL COMPONENTS ==========
