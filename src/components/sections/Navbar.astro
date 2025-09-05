@@ -76,7 +76,7 @@ const currentPath = Astro.url.pathname;
             <div class="flex flex-col gap-0.5 xl:flex-row xl:items-center xl:justify-evenly xl:gap-1">
               <a
                 href="/"
-                class={`flex items-center rounded-lg p-2 font-medium text-slate-800 hover:bg-slate-100 focus:bg-slate-100 focus:outline-hidden ${
+                class={`flex items-center rounded-lg p-2 text-lg font-medium text-slate-800 hover:bg-slate-100 focus:bg-slate-100 focus:outline-hidden ${
                   currentPath === '/' ? 'underline underline-offset-4' : ''
                 }`}
                 aria-current={currentPath === '/' ? 'page' : undefined}
@@ -88,7 +88,7 @@ const currentPath = Astro.url.pathname;
                 navigationLinks.map((link) => (
                   <a
                     href={link.href}
-                    class={`flex items-center rounded-lg p-2 font-medium text-slate-800 hover:bg-slate-100 focus:bg-slate-100 focus:outline-hidden ${
+                    class={`flex items-center rounded-lg p-2 text-lg font-medium text-slate-800 hover:bg-slate-100 focus:bg-slate-100 focus:outline-hidden ${
                       currentPath === link.href ? 'underline underline-offset-4' : ''
                     }`}
                     aria-current={currentPath === link.href ? 'page' : undefined}
