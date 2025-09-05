@@ -1,10 +1,17 @@
 ---
+import heroData from '@data/hero.json';
+import fallbackHeroImage from '@images/hero.webp';
 import Button from '@ui/Button.astro';
 import { Image } from 'astro:assets';
-import heroData from '@data/hero.json';
-import heroImage from '@images/hero.webp';
 
 const { title, subtitle, primaryCTA, secondaryCTA, image } = heroData;
+
+let heroImageSrc = fallbackHeroImage;
+if (image && 'src' in image && typeof image.src === 'string') {
+  const imagePath = image.src.replace('@assets', '/src/assets');
+  const imageModule = await import(/* @vite-ignore */ imagePath);
+  heroImageSrc = imageModule.default;
+}
 ---
 
 {/* Hero Content */}
@@ -32,6 +39,6 @@ const { title, subtitle, primaryCTA, secondaryCTA, image } = heroData;
 
   {/* Right side - Image */}
   <div class="flex flex-1 justify-center lg:justify-end">
-    <Image src={heroImage} alt={image.alt} width={1000} height={1000} class="rounded-3xl" />
+    <Image src={heroImageSrc} alt={image?.alt || 'GMTEC Group'} width={1000} height={1000} class="rounded-3xl" />
   </div>
 </div>

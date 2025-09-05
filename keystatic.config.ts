@@ -163,8 +163,8 @@ export default config({
         image: fields.object({
           src: fields.image({
             label: "Hero image",
-            directory: "src/assets/images",
-            publicPath: "@assets/images/",
+            directory: "src/assets/images/hero",
+            publicPath: "@assets/images/hero/",
           }),
           alt: fields.text({
             label: "Image alt text",
