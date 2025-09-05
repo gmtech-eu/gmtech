@@ -31,6 +31,9 @@
       ],
       "@utils/*": [
         "src/utils/*"
+      ],
+      "@data/*": [
+        "src/data/*"
       ]
     },
     "jsx": "react-jsx",

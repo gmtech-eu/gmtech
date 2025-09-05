@@ -1,4 +1,4 @@
-import { config, fields, collection } from "@keystatic/core";
+import { config, fields, singleton } from "@keystatic/core";
 
 // https://keystatic.com/docs/local-mode
 // Set storage mode: "local" or "github"
@@ -19,76 +19,42 @@ export default config({
           kind: "local",
         },
 
-  collections: {
-    articles: collection({
-      label: "Articles",
-      slugField: "title",
-      path: "src/content/articles/*",
-      format: { contentField: "content" },
-      schema: {
-        title: fields.slug({ name: { label: "Title" } }),
-        description: fields.text({ label: "Description" }),
-        content: fields.markdoc({
-          label: "Content",
-          options: {
-            image: {
-              directory: "src/assets/images/articles",
-              publicPath: "@images/articles/",
-            },
-          },
-        }),
-        date: fields.date({
-          label: "Publication date",
-          description: "The date of the publication",
-        }),
-      },
-    }),
-    reference: collection({
-      label: "Reference",
-      slugField: "title",
-      path: "src/content/reference/*",
-      format: { contentField: "content" },
-      schema: {
-        title: fields.slug({ name: { label: "Title" } }),
-        description: fields.text({ label: "Description" }),
-        content: fields.markdoc({
-          label: "Content",
-          options: {
-            image: {
-              directory: "src/assets/images/reference",
-              publicPath: "@images/reference/",
-            },
-          },
-        }),
-        date: fields.date({
-          label: "Publication date",
-          description: "The date of the publication",
-        }),
-      },
-    }),
-    spreadsheets: collection({
-      label: "Sample Spreadsheets",
-      slugField: "title",
-      path: "src/data/spreadsheets/*",
+  singletons: {
+    navbar: singleton({
+      label: "Navigation",
+      path: "src/data/navbar",
       format: { data: "json" },
       schema: {
-        title: fields.slug({ name: { label: "Spreadsheet Name" } }),
-        description: fields.text({ label: "Description" }),
-        url: fields.url({ label: "Link" }),
-      },
-    }),
-    whitepapers: collection({
-      label: "Whitepapers",
-      slugField: "title",
-      path: "src/data/whitepapers/*",
-      format: { data: "json" },
-      schema: {
-        title: fields.slug({ name: { label: "Whitepaper Name" } }),
-        description: fields.text({ label: "Description" }),
-        readLink: fields.url({ label: "Read Link" }),
-        btnTitle: fields.text({ label: "Button Title" }),
-        btnLink: fields.url({ label: "Button Link" }),
+        logoHighlightedText: fields.text({
+          label: "Texte mis en évidence",
+          defaultValue: "GM",
+        }),
+        logoText: fields.text({
+          label: "Texte du logo",
+          defaultValue: "TEC",
+        }),
+        homeLink: fields.object({
+          label: fields.text({
+            label: "Libellé du lien d'accueil",
+            defaultValue: "Home",
+          }),
+          href: fields.text({
+            label: "URL du lien d'accueil",
+            defaultValue: "/",
+          }),
+        }),
+        navigationLinks: fields.array(
+          fields.object({
+            label: fields.text({ label: "Libellé" }),
+            href: fields.text({ label: "URL" }),
+          }),
+          {
+            label: "Liens de navigation",
+          },
+        ),
       },
     }),
   },
+
+  collections: {},
 });

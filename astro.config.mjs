@@ -27,6 +27,20 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        '@': '/src',
+        '@common': '/src/components/common',
+        '@megaMenu': '/src/components/common/MegaMenu',
+        '@images': '/src/assets/images',
+        '@layout': '/src/layout',
+        '@ui': '/src/components/ui',
+        '@sections': '/src/components/sections',
+        '@styles': '/src/assets/styles',
+        '@utils': '/src/utils',
+        '@data': '/src/data',
+      },
+    },
   },
   output: "server",
   adapter: vercel(),

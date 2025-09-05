@@ -1,0 +1,22 @@
+{
+  "logoHighlightedText": "GM",
+  "logoText": "TEC",
+  "homeLink": {
+    "label": "Home",
+    "href": "/"
+  },
+  "navigationLinks": [
+    {
+      "label": "Group",
+      "href": "/about"
+    },
+    {
+      "label": "Technologies",
+      "href": "/technologies"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact"
+    }
+  ]
+}

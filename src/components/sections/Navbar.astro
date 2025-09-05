@@ -1,9 +1,10 @@
 ---
-import { navigationLinks } from '@utils/navigation';
 import { Image } from 'astro:assets';
 import logo from '@images/logo.svg';
+import navbarData from '@data/navbar.json';
 
 const currentPath = Astro.url.pathname;
+const { logoText, logoHighlightedText, homeLink, navigationLinks } = navbarData;
 ---
 
 <header
@@ -13,12 +14,12 @@ const currentPath = Astro.url.pathname;
     class="relative mx-auto w-full px-4 py-2 sm:px-6 lg:px-8 xl:flex xl:max-w-7xl xl:items-center xl:justify-between xl:gap-3 2xl:max-w-[85rem]"
   >
     <div class="flex items-center justify-between gap-x-1">
-      <Image src={logo} alt="GMTEC Logo" width={50} height={50} />
+      <Image src={logo} alt={`${logoHighlightedText}${logoText} Logo`} width={50} height={50} />
       <a
         class="dm-sans flex-none text-2xl font-light text-slate-400 focus:opacity-80 focus:outline-hidden"
         href="/"
-        aria-label="GMTEC Logo"
-        translate="no"><span class="font-semibold text-teal-700">GM</span>TEC</a
+        aria-label={`${logoHighlightedText}${logoText} Logo`}
+        translate="no"><span class="font-semibold text-teal-700">{logoHighlightedText}</span>{logoText}</a
       >
 
       <button
@@ -75,13 +76,13 @@ const currentPath = Astro.url.pathname;
           <div class="grow">
             <div class="flex flex-col gap-0.5 xl:flex-row xl:items-center xl:justify-evenly xl:gap-1">
               <a
-                href="/"
+                href={homeLink.href}
                 class={`flex items-center rounded-lg p-2 text-lg font-medium text-slate-800 hover:bg-slate-100 focus:bg-slate-100 focus:outline-hidden ${
-                  currentPath === '/' ? 'underline underline-offset-4' : ''
+                  currentPath === homeLink.href ? 'underline underline-offset-4' : ''
                 }`}
-                aria-current={currentPath === '/' ? 'page' : undefined}
+                aria-current={currentPath === homeLink.href ? 'page' : undefined}
               >
-                Home
+                {homeLink.label}
               </a>
 
               {
