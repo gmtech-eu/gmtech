@@ -34,16 +34,6 @@ export default config({
           label: "Logo text",
           defaultValue: "TEC",
         }),
-        homeLink: fields.object({
-          label: fields.text({
-            label: "Home link label",
-            defaultValue: "Home",
-          }),
-          href: fields.text({
-            label: "Home link URL",
-            defaultValue: "/",
-          }),
-        }),
         navigationLinks: fields.array(
           fields.object({
             label: fields.text({ label: "Label" }),
@@ -87,9 +77,33 @@ export default config({
           ),
         }),
         contactInfo: fields.object({
+          title: fields.text({
+            label: "Contact section title",
+            defaultValue: "Contact",
+          }),
           address: fields.text({
             label: "Address",
             defaultValue: "France & Italy",
+          }),
+          email: fields.object({
+            address: fields.text({
+              label: "Email address",
+              defaultValue: "contact@gmtec.eu",
+            }),
+            linkText: fields.text({
+              label: "Email link text",
+              defaultValue: "Send us a message",
+            }),
+          }),
+          linkedIn: fields.object({
+            url: fields.text({
+              label: "LinkedIn URL",
+              defaultValue: "https://www.linkedin.com/company/gmtec-group",
+            }),
+            linkText: fields.text({
+              label: "LinkedIn link text",
+              defaultValue: "Follow us",
+            }),
           }),
         }),
         copyright: fields.object({
@@ -119,30 +133,31 @@ export default config({
       schema: {
         title: fields.text({
           label: "Main title",
-          defaultValue: "Expertise in automotive consulting since 2003"
+          defaultValue: "Expertise in automotive consulting since 2003",
         }),
         subtitle: fields.text({
           label: "Subtitle/Description",
-          defaultValue: "We have been committed and focused, supporting our Principals mainly in the French and Italian markets, facilitating the growth of their Sales."
+          defaultValue:
+            "We have been committed and focused, supporting our Principals mainly in the French and Italian markets, facilitating the growth of their Sales.",
         }),
         primaryCTA: fields.object({
-          text: fields.text({ 
+          text: fields.text({
             label: "Primary button text",
-            defaultValue: "Contact us"
+            defaultValue: "Contact us",
           }),
-          href: fields.text({ 
+          href: fields.text({
             label: "Primary button URL",
-            defaultValue: "/contact"
+            defaultValue: "/contact",
           }),
         }),
         secondaryCTA: fields.object({
-          text: fields.text({ 
+          text: fields.text({
             label: "Secondary button text",
-            defaultValue: "Learn about our mission"
+            defaultValue: "Learn about our mission",
           }),
-          href: fields.text({ 
+          href: fields.text({
             label: "Secondary button URL",
-            defaultValue: "/about"
+            defaultValue: "/about",
           }),
         }),
         image: fields.object({
@@ -151,9 +166,9 @@ export default config({
             directory: "src/assets/images",
             publicPath: "@assets/images/",
           }),
-          alt: fields.text({ 
+          alt: fields.text({
             label: "Image alt text",
-            defaultValue: "GMTEC Group"
+            defaultValue: "GMTEC Group",
           }),
         }),
       },
@@ -165,19 +180,20 @@ export default config({
       schema: {
         title: fields.text({
           label: "Section title",
-          defaultValue: "Who we are"
+          defaultValue: "Who we are",
         }),
         subtitle: fields.text({
           label: "Section description",
           multiline: true,
-          defaultValue: "We've been active in the automotive sector for over 20 years. Our cross-disciplinary team provides flexible support for both our principals and end customers, in a wide range of areas including sales, engineering, logistics and quality. By offering agile and flexible solutions for business development, our mission is to strengthen the Automotive Supplier's presence in the field and increase the success chances for all the existing opportunities."
+          defaultValue:
+            "We've been active in the automotive sector for over 20 years. Our cross-disciplinary team provides flexible support for both our principals and end customers, in a wide range of areas including sales, engineering, logistics and quality. By offering agile and flexible solutions for business development, our mission is to strengthen the Automotive Supplier's presence in the field and increase the success chances for all the existing opportunities.",
         }),
         features: fields.array(
           fields.object({
             title: fields.text({ label: "Feature title" }),
-            description: fields.text({ 
+            description: fields.text({
               label: "Feature description",
-              multiline: true
+              multiline: true,
             }),
             image: fields.conditional(
               fields.checkbox({ label: "Has image?" }),
@@ -188,30 +204,27 @@ export default config({
                     directory: "src/assets/images",
                     publicPath: "@assets/images/",
                   }),
-                  alt: fields.text({ 
+                  alt: fields.text({
                     label: "Image alt text",
-                    defaultValue: ""
+                    defaultValue: "",
                   }),
                 }),
                 false: fields.empty(),
-              }
+              },
             ),
             additionalItems: fields.conditional(
               fields.checkbox({ label: "Has additional list items?" }),
               {
-                true: fields.array(
-                  fields.text({ label: "List item" }),
-                  {
-                    label: "Additional features",
-                  }
-                ),
+                true: fields.array(fields.text({ label: "List item" }), {
+                  label: "Additional features",
+                }),
                 false: fields.empty(),
-              }
+              },
             ),
           }),
           {
             label: "Features",
-          }
+          },
         ),
       },
     }),
@@ -222,22 +235,24 @@ export default config({
       schema: {
         title: fields.text({
           label: "Section title",
-          defaultValue: "Our mission"
+          defaultValue: "Our mission",
         }),
         subtitle: fields.text({
           label: "Section description",
           multiline: true,
-          defaultValue: "We offer tailor-made Business Development support in the Automotive OE (Original Equipment) sector, adapting ourselves to the needs of our partners."
+          defaultValue:
+            "We offer tailor-made Business Development support in the Automotive OE (Original Equipment) sector, adapting ourselves to the needs of our partners.",
         }),
         localExpertise: fields.object({
-          title: fields.text({ 
+          title: fields.text({
             label: "Title",
-            defaultValue: "Local Expertise"
+            defaultValue: "Local Expertise",
           }),
-          description: fields.text({ 
+          description: fields.text({
             label: "Description",
             multiline: true,
-            defaultValue: "Deep market knowledge in France, Italy, Benelux and Spain with on-the-ground presence and cultural understanding"
+            defaultValue:
+              "Deep market knowledge in France, Italy, Benelux and Spain with on-the-ground presence and cultural understanding",
           }),
           image: fields.object({
             src: fields.image({
@@ -245,21 +260,22 @@ export default config({
               directory: "src/assets/images",
               publicPath: "@assets/images/",
             }),
-            alt: fields.text({ 
+            alt: fields.text({
               label: "Image alt text",
-              defaultValue: "Local Expertise"
+              defaultValue: "Local Expertise",
             }),
           }),
         }),
         projectManagement: fields.object({
-          title: fields.text({ 
+          title: fields.text({
             label: "Title",
-            defaultValue: "Complete Project Management"
+            defaultValue: "Complete Project Management",
           }),
-          description: fields.text({ 
+          description: fields.text({
             label: "Description",
             multiline: true,
-            defaultValue: "From project award to <span class=\"font-bold\">SOP</span> (Start of Production), we provide comprehensive program management throughout the development phase and series production."
+            defaultValue:
+              'From project award to <span class="font-bold">SOP</span> (Start of Production), we provide comprehensive program management throughout the development phase and series production.',
           }),
           image: fields.object({
             src: fields.image({
@@ -267,21 +283,22 @@ export default config({
               directory: "src/assets/images",
               publicPath: "@assets/images/",
             }),
-            alt: fields.text({ 
+            alt: fields.text({
               label: "Image alt text",
-              defaultValue: "Project Management"
+              defaultValue: "Project Management",
             }),
           }),
         }),
         agileResponse: fields.object({
-          title: fields.text({ 
+          title: fields.text({
             label: "Title",
-            defaultValue: "Agile Response"
+            defaultValue: "Agile Response",
           }),
-          description: fields.text({ 
+          description: fields.text({
             label: "Description",
             multiline: true,
-            defaultValue: "We intervene effectively in the event of engineering modifications, technical obstacles, quality or logistics issues. Our lean structure ensures rapid adaptation."
+            defaultValue:
+              "We intervene effectively in the event of engineering modifications, technical obstacles, quality or logistics issues. Our lean structure ensures rapid adaptation.",
           }),
           image: fields.object({
             src: fields.image({
@@ -289,32 +306,29 @@ export default config({
               directory: "src/assets/images",
               publicPath: "@assets/images/",
             }),
-            alt: fields.text({ 
+            alt: fields.text({
               label: "Image alt text",
-              defaultValue: "Agile Response"
+              defaultValue: "Agile Response",
             }),
           }),
         }),
         beyondSales: fields.object({
-          title: fields.text({ 
+          title: fields.text({
             label: "Title",
-            defaultValue: "Beyond Sales Support"
+            defaultValue: "Beyond Sales Support",
           }),
-          listItems: fields.array(
-            fields.text({ label: "List item" }),
-            {
-              label: "Support items",
-            }
-          ),
+          listItems: fields.array(fields.text({ label: "List item" }), {
+            label: "Support items",
+          }),
           image: fields.object({
             src: fields.image({
               label: "Image",
               directory: "src/assets/images",
               publicPath: "@assets/images/",
             }),
-            alt: fields.text({ 
+            alt: fields.text({
               label: "Image alt text",
-              defaultValue: "Beyond Sales Support"
+              defaultValue: "Beyond Sales Support",
             }),
           }),
         }),
@@ -327,38 +341,42 @@ export default config({
       schema: {
         title: fields.text({
           label: "Section title",
-          defaultValue: "Our Strategic Approach"
+          defaultValue: "Our Strategic Approach",
         }),
         subtitle: fields.text({
           label: "Section description",
           multiline: true,
-          defaultValue: "Agile and responsive, we are constantly adapting thanks to our lean organizational structure and the versatility of our team. Our role goes far beyond simply supporting suppliers' sales teams - we actively contribute to development at every stage."
+          defaultValue:
+            "Agile and responsive, we are constantly adapting thanks to our lean organizational structure and the versatility of our team. Our role goes far beyond simply supporting suppliers' sales teams - we actively contribute to development at every stage.",
         }),
         ctaButton: fields.object({
-          text: fields.text({ 
+          text: fields.text({
             label: "Button text",
-            defaultValue: "Learn More"
+            defaultValue: "Learn More",
           }),
-          href: fields.text({ 
+          href: fields.text({
             label: "Button URL",
-            defaultValue: "/about"
+            defaultValue: "/about",
           }),
         }),
         features: fields.object({
-          identify: fields.text({ 
+          identify: fields.text({
             label: "Identify feature description",
             multiline: true,
-            defaultValue: "Identify opportunities and qualify potential partners in target markets."
+            defaultValue:
+              "Identify opportunities and qualify potential partners in target markets.",
           }),
-          develop: fields.text({ 
+          develop: fields.text({
             label: "Develop feature description",
             multiline: true,
-            defaultValue: "Develop tailored strategies and manage complex automotive projects."
+            defaultValue:
+              "Develop tailored strategies and manage complex automotive projects.",
           }),
-          transform: fields.text({ 
+          transform: fields.text({
             label: "Transform feature description",
             multiline: true,
-            defaultValue: "Transform partnerships into sustainable business growth and success."
+            defaultValue:
+              "Transform partnerships into sustainable business growth and success.",
           }),
         }),
       },
@@ -370,45 +388,49 @@ export default config({
       schema: {
         title: fields.text({
           label: "Section title",
-          defaultValue: "Our vision"
+          defaultValue: "Our vision",
         }),
         subtitle: fields.text({
           label: "Section description",
           multiline: true,
-          defaultValue: "To empower our core business within the automotive OE sector, we have been diversifying our activities for around five years with strategic initiatives. Our ambition: to become the most efficient and reliable local partner for suppliers to the automotive, agricultural and industrial sectors, with a presence that extends well beyond the European market."
+          defaultValue:
+            "To empower our core business within the automotive OE sector, we have been diversifying our activities for around five years with strategic initiatives. Our ambition: to become the most efficient and reliable local partner for suppliers to the automotive, agricultural and industrial sectors, with a presence that extends well beyond the European market.",
         }),
         features: fields.object({
           rnd: fields.object({
-            heading: fields.text({ 
+            heading: fields.text({
               label: "R&D heading",
-              defaultValue: "Advanced R&D Activities"
+              defaultValue: "Advanced R&D Activities",
             }),
-            description: fields.text({ 
+            description: fields.text({
               label: "R&D description",
               multiline: true,
-              defaultValue: "Launching new activities in advanced R&D, continuously learning on new technologies, new regulations and new market tendencies to stay at the forefront of automotive innovation."
+              defaultValue:
+                "Launching new activities in advanced R&D, continuously learning on new technologies, new regulations and new market tendencies to stay at the forefront of automotive innovation.",
             }),
           }),
           multiSector: fields.object({
-            heading: fields.text({ 
+            heading: fields.text({
               label: "Multi-sector heading",
-              defaultValue: "Multi-Sector Expertise"
+              defaultValue: "Multi-Sector Expertise",
             }),
-            description: fields.text({ 
+            description: fields.text({
               label: "Multi-sector description",
               multiline: true,
-              defaultValue: "Promotion of technologies not limited to the OE Automotive sector, but also for systems and components in the Agricultural, Industrial and Independent Aftermarket (IAM) areas."
+              defaultValue:
+                "Promotion of technologies not limited to the OE Automotive sector, but also for systems and components in the Agricultural, Industrial and Independent Aftermarket (IAM) areas.",
             }),
           }),
           expansion: fields.object({
-            heading: fields.text({ 
+            heading: fields.text({
               label: "Expansion heading",
-              defaultValue: "Global Expansion"
+              defaultValue: "Global Expansion",
             }),
-            description: fields.text({ 
+            description: fields.text({
               label: "Expansion description",
               multiline: true,
-              defaultValue: "Enlarge our presence in EMEA and in new Continents via opening of new offices or via partnerships, extending our reach to serve clients worldwide."
+              defaultValue:
+                "Enlarge our presence in EMEA and in new Continents via opening of new offices or via partnerships, extending our reach to serve clients worldwide.",
             }),
           }),
         }),
@@ -422,36 +444,37 @@ export default config({
         title: fields.object({
           firstLine: fields.text({
             label: "First line of title",
-            defaultValue: "Ready to accelerate your growth?"
+            defaultValue: "Ready to accelerate your growth?",
           }),
           secondLine: fields.text({
             label: "Second line (before company name)",
-            defaultValue: "Partner with"
+            defaultValue: "Partner with",
           }),
           companyName: fields.object({
             highlighted: fields.text({
               label: "Company name highlighted part",
-              defaultValue: "GM"
+              defaultValue: "GM",
             }),
             normal: fields.text({
-              label: "Company name normal part", 
-              defaultValue: "TEC"
+              label: "Company name normal part",
+              defaultValue: "TEC",
             }),
           }),
         }),
         subtitle: fields.text({
           label: "Subtitle description",
           multiline: true,
-          defaultValue: "Transform your fixed costs into variable costs and gain immediate access to seasoned automotive sales professionals. Let's discuss how we can support your business development in Europe."
+          defaultValue:
+            "Transform your fixed costs into variable costs and gain immediate access to seasoned automotive sales professionals. Let's discuss how we can support your business development in Europe.",
         }),
         ctaButton: fields.object({
-          text: fields.text({ 
+          text: fields.text({
             label: "Button text",
-            defaultValue: "Contact Our Experts"
+            defaultValue: "Contact Our Experts",
           }),
-          href: fields.text({ 
+          href: fields.text({
             label: "Button URL",
-            defaultValue: "/contact"
+            defaultValue: "/contact",
           }),
         }),
       },
@@ -465,12 +488,13 @@ export default config({
       schema: {
         title: fields.text({
           label: "Main title",
-          defaultValue: "Why outsource?"
+          defaultValue: "Why outsource?",
         }),
         description: fields.text({
           label: "Description",
           multiline: true,
-          defaultValue: "Entrusting your sales force to a specialized partner transforms fixed costs into variable costs, guarantees immediate access to seasoned sales people and frees up your in-house teams to focus on innovation and operations. You gain in flexibility, reduce your structural costs and get your offers to market faster."
+          defaultValue:
+            "Entrusting your sales force to a specialized partner transforms fixed costs into variable costs, guarantees immediate access to seasoned sales people and frees up your in-house teams to focus on innovation and operations. You gain in flexibility, reduce your structural costs and get your offers to market faster.",
         }),
         statistics: fields.array(
           fields.object({
@@ -479,7 +503,7 @@ export default config({
           }),
           {
             label: "Statistics",
-          }
+          },
         ),
       },
     }),
@@ -490,19 +514,19 @@ export default config({
       schema: {
         title: fields.text({
           label: "Section title",
-          defaultValue: "Major Advantages:"
+          defaultValue: "Major Advantages:",
         }),
         expertise: fields.array(
           fields.object({
             title: fields.text({ label: "Expertise title" }),
-            description: fields.text({ 
+            description: fields.text({
               label: "Expertise description",
-              multiline: true
+              multiline: true,
             }),
           }),
           {
             label: "Expertise items",
-          }
+          },
         ),
       },
     }),
@@ -513,17 +537,19 @@ export default config({
       schema: {
         title: fields.text({
           label: "Section title",
-          defaultValue: "Our Partners"
+          defaultValue: "Our Partners",
         }),
         firstParagraph: fields.text({
           label: "First paragraph",
           multiline: true,
-          defaultValue: "At GMTEC, we support a wide range of partners, from international groups to mid-sized companies. Whatever their profile, we provide them with on-the-ground expertise, a tailor-made approach and the proximity they need to boost their commercial effectiveness in Europe."
+          defaultValue:
+            "At GMTEC, we support a wide range of partners, from international groups to mid-sized companies. Whatever their profile, we provide them with on-the-ground expertise, a tailor-made approach and the proximity they need to boost their commercial effectiveness in Europe.",
         }),
         secondParagraph: fields.text({
           label: "Second paragraph",
           multiline: true,
-          defaultValue: "We build long-term relationships based on trust, transparency and concrete results. Our added value lies in our ability to bridge the gap between cultures, teams and technical issues, facilitating exchanges and the development of ambitious projects."
+          defaultValue:
+            "We build long-term relationships based on trust, transparency and concrete results. Our added value lies in our ability to bridge the gap between cultures, teams and technical issues, facilitating exchanges and the development of ambitious projects.",
         }),
       },
     }),
@@ -536,12 +562,13 @@ export default config({
       schema: {
         title: fields.text({
           label: "Main title",
-          defaultValue: "Technologies"
+          defaultValue: "Technologies",
         }),
         description: fields.text({
           label: "Description",
           multiline: true,
-          defaultValue: "We work mainly in the fields of chassis and thermal management, but our know-how can be adapted to meet the many technical challenges posed by developments in the automotive industry."
+          defaultValue:
+            "We work mainly in the fields of chassis and thermal management, but our know-how can be adapted to meet the many technical challenges posed by developments in the automotive industry.",
         }),
       },
     }),
@@ -561,38 +588,35 @@ export default config({
                 { label: "Box (Interior)", value: "box" },
                 { label: "Thermometer (Thermal)", value: "thermometer" },
               ],
-              defaultValue: "zap"
+              defaultValue: "zap",
             }),
-            description: fields.text({ 
+            description: fields.text({
               label: "Technology description",
-              multiline: true
+              multiline: true,
             }),
-            features: fields.array(
-              fields.text({ label: "Feature" }),
-              {
-                label: "Features list",
-              }
-            ),
+            features: fields.array(fields.text({ label: "Feature" }), {
+              label: "Features list",
+            }),
             images: fields.array(
               fields.object({
                 src: fields.image({
-                  label: "Slideshow image",  
+                  label: "Slideshow image",
                   directory: "src/assets/images",
                   publicPath: "@assets/images/",
                 }),
-                alt: fields.text({ 
+                alt: fields.text({
                   label: "Image alt text",
-                  defaultValue: ""
+                  defaultValue: "",
                 }),
               }),
               {
                 label: "Slideshow images",
-              }
+              },
             ),
           }),
           {
             label: "Technologies",
-          }
+          },
         ),
       },
     }),
@@ -603,21 +627,22 @@ export default config({
       schema: {
         title: fields.text({
           label: "CTA title",
-          defaultValue: "Ready to discuss your project?"
+          defaultValue: "Ready to discuss your project?",
         }),
         description: fields.text({
           label: "CTA description",
           multiline: true,
-          defaultValue: "Our team of experts is ready to help you navigate the complexities of automotive technology development."
+          defaultValue:
+            "Our team of experts is ready to help you navigate the complexities of automotive technology development.",
         }),
         button: fields.object({
           text: fields.text({
             label: "Button text",
-            defaultValue: "Contact our experts"
+            defaultValue: "Contact our experts",
           }),
           href: fields.text({
             label: "Button URL",
-            defaultValue: "/contact"
+            defaultValue: "/contact",
           }),
         }),
       },
@@ -631,12 +656,13 @@ export default config({
       schema: {
         title: fields.text({
           label: "Main title",
-          defaultValue: "Contact us"
+          defaultValue: "Contact us",
         }),
         subtitle: fields.text({
           label: "Subtitle",
           multiline: true,
-          defaultValue: "Get in touch with our experts in France and Italy. We're here to help you navigate the automotive industry."
+          defaultValue:
+            "Get in touch with our experts in France and Italy. We're here to help you navigate the automotive industry.",
         }),
       },
     }),
@@ -647,32 +673,33 @@ export default config({
       schema: {
         offices: fields.array(
           fields.object({
-            id: fields.text({ 
+            id: fields.text({
               label: "Office ID (lowercase)",
-              defaultValue: "france"
+              defaultValue: "france",
             }),
-            office: fields.text({ 
+            office: fields.text({
               label: "Office name",
-              defaultValue: "France Office"
+              defaultValue: "France Office",
             }),
-            address: fields.text({ 
+            address: fields.text({
               label: "Office address",
-              defaultValue: "123 Avenue des Champs-Élysées, 75008 Paris, France"
+              defaultValue:
+                "123 Avenue des Champs-Élysées, 75008 Paris, France",
             }),
-            email: fields.text({ 
+            email: fields.text({
               label: "Contact email",
-              defaultValue: "contact@gmtec.eu"
+              defaultValue: "contact@gmtec.eu",
             }),
             avatarBackground: fields.text({
               label: "Avatar background color (hex without #)",
               defaultValue: "5aaeae",
-              description: "Background color for the generated avatar"
+              description: "Background color for the generated avatar",
             }),
           }),
           {
             label: "Office locations",
-            itemLabel: props => props.fields.office.value || 'Office'
-          }
+            itemLabel: (props) => props.fields.office.value || "Office",
+          },
         ),
       },
     }),
@@ -683,20 +710,21 @@ export default config({
       schema: {
         title: fields.text({
           label: "Section title",
-          defaultValue: "Stay Connected"
+          defaultValue: "Stay Connected",
         }),
         description: fields.text({
           label: "Section description",
           multiline: true,
-          defaultValue: "Follow us on LinkedIn for the latest automotive industry insights and company updates."
+          defaultValue:
+            "Follow us on LinkedIn for the latest automotive industry insights and company updates.",
         }),
         linkedInUrl: fields.text({
           label: "LinkedIn profile URL",
-          defaultValue: "https://www.linkedin.com/company/gmtec-group"
+          defaultValue: "https://www.linkedin.com/company/gmtec-group",
         }),
         buttonText: fields.text({
           label: "Button text",
-          defaultValue: "Visit our LinkedIn page"
+          defaultValue: "Visit our LinkedIn page",
         }),
       },
     }),

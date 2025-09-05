@@ -1,11 +1,11 @@
 {
   "logoHighlightedText": "GM",
   "logoText": "TEC",
-  "homeLink": {
-    "label": "Home",
-    "href": "/"
-  },
   "navigationLinks": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
     {
       "label": "Group",
       "href": "/about"

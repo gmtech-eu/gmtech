@@ -4,7 +4,7 @@ import logo from '@images/logo.svg';
 import navbarData from '@data/navbar.json';
 
 const currentPath = Astro.url.pathname;
-const { logoText, logoHighlightedText, homeLink, navigationLinks } = navbarData;
+const { logoText, logoHighlightedText, navigationLinks } = navbarData;
 ---
 
 <header
@@ -75,16 +75,6 @@ const { logoText, logoHighlightedText, homeLink, navigationLinks } = navbarData;
         <div class="flex flex-col gap-0.5 py-2 xl:flex-row xl:items-center xl:gap-1 xl:py-0">
           <div class="grow">
             <div class="flex flex-col gap-0.5 xl:flex-row xl:items-center xl:justify-evenly xl:gap-1">
-              <a
-                href={homeLink.href}
-                class={`flex items-center rounded-lg p-2 text-lg font-medium text-slate-800 hover:bg-slate-100 focus:bg-slate-100 focus:outline-hidden ${
-                  currentPath === homeLink.href ? 'underline underline-offset-4' : ''
-                }`}
-                aria-current={currentPath === homeLink.href ? 'page' : undefined}
-              >
-                {homeLink.label}
-              </a>
-
               {
                 navigationLinks.map((link) => (
                   <a

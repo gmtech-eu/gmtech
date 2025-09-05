@@ -21,7 +21,16 @@
     ]
   },
   "contactInfo": {
-    "address": "France & Italy"
+    "title": "Contact",
+    "address": "France & Italy",
+    "email": {
+      "address": "contact@gmtec.eu",
+      "linkText": "Send us a message"
+    },
+    "linkedIn": {
+      "url": "https://www.linkedin.com/company/gmtec-group",
+      "linkText": "Follow us"
+    }
   },
   "copyright": {
     "companyName": "GMTEC Group",
