@@ -1,106 +1,100 @@
 ---
-import BaseLayout from "@layout/BaseLayout.astro";
-import type { WithContext, Thing } from "schema-dts";
+import BaseLayout from '@layout/BaseLayout.astro';
+import type { Thing, WithContext } from 'schema-dts';
 
 // Data describing the "About" section content
 const aboutData = {
-  title: "Why outsource?",
+  title: 'Why outsource?',
   description:
-    "Entrusting your sales force to a specialized partner transforms fixed costs into variable costs, guarantees immediate access to seasoned sales people and frees up your in-house teams to focus on innovation and operations. You gain in flexibility, reduce your structural costs and get your offers to market faster.",
+    'Entrusting your sales force to a specialized partner transforms fixed costs into variable costs, guarantees immediate access to seasoned sales people and frees up your in-house teams to focus on innovation and operations. You gain in flexibility, reduce your structural costs and get your offers to market faster.',
   statistics: [
     {
-      label: "Years of Experience",
-      value: "20+",
+      label: 'Years of Experience',
+      value: '20+',
     },
     {
-      label: "Countries Covered",
-      value: "5+",
+      label: 'Continents Covered',
+      value: '4+',
     },
     {
-      label: "Active Partners",
-      value: "50+",
+      label: 'Active Partners',
+      value: '10+',
     },
     {
-      label: "Projects Delivered",
-      value: "500+",
+      label: 'Projects Delivered per year',
+      value: '30+',
     },
   ],
 };
 
 // Data describing the expertise section
 const expertiseData = {
-  title: "Major Advantages:",
+  title: 'Major Advantages:',
   expertise: [
     {
-      title: "Multi-channel prospecting",
+      title: 'Multi-channel prospecting',
       description:
-        "In-depth lead qualification, event-driven acceleration plans, contract negotiation and conclusion, key account follow-up and opening of new territories.",
+        'In-depth lead qualification, event-driven acceleration plans, contract negotiation and conclusion, key account follow-up and opening of new territories.',
     },
     {
-      title: "Reduced sales costs",
+      title: 'Reduced sales costs',
       description:
-        "Instant adaptation of resources to market fluctuations, access to experienced talent without recruitment delays, and operational deployment in a matter of weeks.",
+        'Instant adaptation of resources to market fluctuations, access to experienced talent without recruitment delays, and operational deployment in a matter of weeks.',
     },
     {
-      title: "When is it relevant?",
+      title: 'When is it relevant?',
       description:
-        "SMEs lacking time, budget or expertise. Technology companies needing to convert innovation into sales. Companies in export or expansion phase. Established groups benchmarking internal performance.",
+        'SMEs lacking time, budget or expertise. Technology companies needing to convert innovation into sales. Companies in export or expansion phase. Established groups benchmarking internal performance.',
     },
   ],
 };
 
 // SEO metadata for the page
 const seo = {
-  title: "Group - GMTEC",
-  description: "GMTEC Group - Your specialized partner for automotive business development in Europe. Transform fixed costs into variable costs with our experienced sales force.",
+  title: 'Group - GMTEC',
+  description:
+    'GMTEC Group - Your specialized partner for automotive business development in Europe. Transform fixed costs into variable costs with our experienced sales force.',
 };
 
 // Schema.org metadata for SEO
 const schema: WithContext<Thing> = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "inLanguage": "en-US",
-  "@id": Astro.url.href,
-  "url": Astro.url.href,
-  "name": "Group - GMTEC",
-  "description": "Learn about GMTEC Group's approach to automotive business development and why outsourcing your sales force can transform your business.",
-  "isPartOf": {
-    "@type": "WebSite",
-    "url": `${Astro.site}`,
-    "name": "GMTEC",
-    "description": "GMTEC Group is a consulting company providing expertise in the Automotive sector since 2003."
-  }
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  inLanguage: 'en-US',
+  '@id': Astro.url.href,
+  url: Astro.url.href,
+  name: 'Group - GMTEC',
+  description:
+    "Learn about GMTEC Group's approach to automotive business development and why outsourcing your sales force can transform your business.",
+  isPartOf: {
+    '@type': 'WebSite',
+    url: `${Astro.site}`,
+    name: 'GMTEC',
+    description: 'GMTEC Group is a consulting company providing expertise in the Automotive sector since 2003.',
+  },
 };
 ---
 
 <BaseLayout seo={seo} schema={schema}>
-  <section class="mx-auto max-w-[85rem] px-4 pb-12 pt-48 sm:px-6 lg:px-8">
+  <section class="mx-auto max-w-[85rem] px-4 pt-48 pb-12 sm:px-6 lg:px-8">
     <div class="max-w-7xl">
       <div class="mx-auto max-w-2xl lg:mx-0">
-        <h1
-          class="text-balance text-4xl text-slate-800 sm:text-5xl md:text-6xl lg:text-7xl"
-        >
+        <h1 class="text-4xl text-balance text-slate-800 sm:text-5xl md:text-6xl lg:text-7xl">
           {aboutData.title}
         </h1>
-        <p
-          class="mt-8 text-pretty text-lg font-medium text-slate-700 sm:text-xl/8"
-        >
+        <p class="mt-8 text-lg font-medium text-pretty text-slate-700 sm:text-xl/8">
           {aboutData.description}
         </p>
       </div>
 
       {/* Statistics Section */}
       <div class="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
-        <dl
-          class="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4"
-        >
+        <dl class="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
           {
             aboutData.statistics.map((stat) => (
               <div class="flex flex-col-reverse gap-1">
                 <dt class="text-base/7 text-slate-700">{stat.label}</dt>
-                <dd class="text-4xl font-semibold tracking-tight text-slate-800">
-                  {stat.value}
-                </dd>
+                <dd class="text-4xl font-semibold tracking-tight text-slate-800">{stat.value}</dd>
               </div>
             ))
           }
@@ -111,17 +105,13 @@ const schema: WithContext<Thing> = {
 
   {/* Expertise Section */}
   <section class="mx-auto max-w-[85rem] px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
-    <div
-      class="group relative isolate overflow-hidden rounded-3xl bg-teal-200 p-5 sm:p-11"
-    >
+    <div class="group relative isolate overflow-hidden rounded-3xl bg-teal-200 p-5 sm:p-11">
       <div
-        class="group pointer-events-none absolute inset-0 -top-[10%] h-[120%] w-full rounded-xl bg-linear-to-r/oklch from-teal-200 to-off-white opacity-0 transition duration-1000 group-hover:opacity-100"
+        class="group to-off-white pointer-events-none absolute inset-0 -top-[10%] h-[120%] w-full rounded-xl bg-linear-to-r/oklch from-teal-200 opacity-0 transition duration-1000 group-hover:opacity-100"
       >
       </div>
       <div class="svgBlock mx-auto max-w-7xl">
-        <h2
-          class="relative text-balance pl-4 text-2xl font-semibold text-slate-800 md:text-3xl md:leading-tight"
-        >
+        <h2 class="relative pl-4 text-2xl font-semibold text-balance text-slate-800 md:text-3xl md:leading-tight">
           {expertiseData.title}
         </h2>
         <dl
@@ -130,14 +120,10 @@ const schema: WithContext<Thing> = {
           {
             expertiseData.expertise.map((item, index) => (
               <div
-                class={`px-5 py-5 sm:px-10 lg:py-0 ${index === 1 ? "h-full border-y border-dashed border-slate-400 lg:border-x lg:border-y-0" : ""}`}
+                class={`px-5 py-5 sm:px-10 lg:py-0 ${index === 1 ? 'h-full border-y border-dashed border-slate-400 lg:border-x lg:border-y-0' : ''}`}
               >
-                <dt class="text-balance text-lg font-semibold text-slate-600">
-                  {item.title}
-                </dt>
-                <dd class="mt-2 text-pretty text-slate-500">
-                  {item.description}
-                </dd>
+                <dt class="text-lg font-semibold text-balance text-slate-600">{item.title}</dt>
+                <dd class="mt-2 text-pretty text-slate-500">{item.description}</dd>
               </div>
             ))
           }
@@ -149,21 +135,23 @@ const schema: WithContext<Thing> = {
   {/* Partners Section */}
   <section class="mx-auto max-w-[85rem] px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
     <div class="mx-auto max-w-2xl text-center lg:mb-14">
-      <h2 class="text-balance text-2xl font-semibold text-slate-800 md:text-3xl md:leading-tight">
-        Our Partners
-      </h2>
+      <h2 class="text-2xl font-semibold text-balance text-slate-800 md:text-3xl md:leading-tight">Our Partners</h2>
       <p class="mt-1 text-pretty text-slate-600">
-        At GMTEC, we support a wide range of partners, from international groups to mid-sized companies. Whatever their profile, we provide them with on-the-ground expertise, a tailor-made approach and the proximity they need to boost their commercial effectiveness in Europe.
+        At GMTEC, we support a wide range of partners, from international groups to mid-sized companies. Whatever their
+        profile, we provide them with on-the-ground expertise, a tailor-made approach and the proximity they need to
+        boost their commercial effectiveness in Europe.
       </p>
       <p class="mt-4 text-pretty text-slate-600">
-        We build long-term relationships based on trust, transparency and concrete results. Our added value lies in our ability to bridge the gap between cultures, teams and technical issues, facilitating exchanges and the development of ambitious projects.
+        We build long-term relationships based on trust, transparency and concrete results. Our added value lies in our
+        ability to bridge the gap between cultures, teams and technical issues, facilitating exchanges and the
+        development of ambitious projects.
       </p>
     </div>
   </section>
 
   <style>
     .svgBlock::after {
-      content: "";
+      content: '';
       position: absolute;
       inset: 0;
       background-image: url(/guilloche.svg);
