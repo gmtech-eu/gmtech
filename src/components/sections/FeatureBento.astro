@@ -1,58 +1,45 @@
 ---
-import { Image } from 'astro:assets';
 import featureBentoData from '@data/featureBento.json';
-
-// Import default images as fallbacks
-import image_1 from '@images/cultural_bridge_2.webp';
-import image_2 from '@images/program_management_2.webp';
-import image_3 from '@images/agile_response.webp';
-import image_4 from '@images/beyond_sales_support.webp';
+import { getImage } from 'astro:assets';
 
 const { title, subtitle, localExpertise, projectManagement, agileResponse, beyondSales } = featureBentoData;
 
-// Map to associate default images
-const imageMap: Record<string, any> = {
-  '@images/cultural_bridge_2.webp': image_1,
-  '@images/program_management_2.webp': image_2,
-  '@images/agile_response.webp': image_3,
-  '@images/beyond_sales_support.webp': image_4,
-};
+const images = import.meta.glob('/src/assets/**/*.{png,jpg,jpeg,gif,webp,avif}', {
+  eager: true,
+  import: 'default',
+});
 
-// Process features with fallback images
-const features = [
-  {
-    id: 'local-expertise',
-    title: localExpertise.title,
-    description: localExpertise.description,
-    image: imageMap[localExpertise.image.src] || image_1,
-    alt: localExpertise.image.alt,
-    layout: 'horizontal',
-  },
-  {
-    id: 'project-management',
-    title: projectManagement.title,
-    description: projectManagement.description,
-    image: imageMap[projectManagement.image.src] || image_2,
-    alt: projectManagement.image.alt,
-    layout: 'vertical',
-  },
-  {
-    id: 'agile-response',
-    title: agileResponse.title,
-    description: agileResponse.description,
-    image: imageMap[agileResponse.image.src] || image_3,
-    alt: agileResponse.image.alt,
-    layout: 'vertical',
-  },
-  {
-    id: 'beyond-sales',
-    title: beyondSales.title,
-    listItems: beyondSales.listItems,
-    image: imageMap[beyondSales.image.src] || image_4,
-    alt: beyondSales.image.alt,
-    layout: 'horizontal',
-  },
-];
+function resolveImage(imagePath: string): ImageMetadata | null {
+  if (!imagePath) return null;
+
+  const fullPath = imagePath.replace('@assets', '/src/assets');
+  return (images[fullPath] as ImageMetadata) ?? null;
+}
+
+const sections = [localExpertise, projectManagement, agileResponse, beyondSales];
+const features = await Promise.all(
+  sections.map(async (section, index) => {
+    const keystaticImageSrc = section.image?.src;
+
+    let optimizedImageUrl = null;
+    const keystaticImage = resolveImage(keystaticImageSrc ?? '');
+
+    if (keystaticImage) {
+      const optimized = await getImage({ src: keystaticImage, format: 'webp' });
+      optimizedImageUrl = optimized.src;
+    }
+
+    return {
+      id: ['local-expertise', 'project-management', 'agile-response', 'beyond-sales'][index],
+      title: section.title,
+      description: 'description' in section ? section.description : '',
+      listItems: 'listItems' in section ? section.listItems : [],
+      optimizedImageUrl,
+      alt: section.image?.alt || '',
+      layout: index === 1 || index === 2 ? 'vertical' : 'horizontal',
+    };
+  })
+);
 ---
 
 <div class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 md:py-14 lg:px-8 lg:py-20">
@@ -81,11 +68,15 @@ const features = [
           </div>
           <div class="relative">
             <div class="overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 to-teal-50 p-6">
-              <Image
-                class="w-full rounded-lg object-contain shadow-md"
-                src={features[0].image}
-                alt={features[0].alt}
-              />
+              {
+                features[0].optimizedImageUrl && (
+                  <img
+                    class="w-full rounded-lg object-contain shadow-md"
+                    src={features[0].optimizedImageUrl}
+                    alt={features[0].alt}
+                  />
+                )
+              }
             </div>
           </div>
         </div>
@@ -106,11 +97,13 @@ const features = [
 
                 <div class="mt-auto">
                   <div class="overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 to-teal-50 p-4">
-                    <Image
-                      class="w-full rounded-lg object-contain shadow-md"
-                      src={feature.image}
-                      alt={feature.alt}
-                    />
+                    {feature.optimizedImageUrl && (
+                      <img
+                        class="w-full rounded-lg object-contain shadow-md"
+                        src={feature.optimizedImageUrl}
+                        alt={feature.alt}
+                      />
+                    )}
                   </div>
                 </div>
               </div>
@@ -134,7 +127,7 @@ const features = [
             {
               features[3].listItems && (
                 <ul class="space-y-3">
-                  {features[3].listItems.map((item) => (
+                  {features[3].listItems.map((item: string) => (
                     <li class="flex items-start text-slate-600">
                       <span class="mt-2 mr-3 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-teal-500" />
                       <span set:html={item} />
@@ -147,11 +140,15 @@ const features = [
 
           <div class="relative">
             <div class="overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 to-teal-50 p-6">
-              <Image
-                class="w-full rounded-lg object-contain shadow-md"
-                src={features[3].image}
-                alt={features[3].alt}
-              />
+              {
+                features[3].optimizedImageUrl && (
+                  <img
+                    class="w-full rounded-lg object-contain shadow-md"
+                    src={features[3].optimizedImageUrl}
+                    alt={features[3].alt}
+                  />
+                )
+              }
             </div>
           </div>
         </div>

@@ -1,19 +1,23 @@
 import { config, fields, singleton } from "@keystatic/core";
 
-// https://keystatic.com/docs/local-mode
-// Set storage mode: "local" or "github"
-let KEYSTATIC_STORAGE_MODE = "local";
+// https://keystatic.com/docs/github-mode
+// Set storage mode: "local" for dev, "github" for production
+const KEYSTATIC_STORAGE_MODE =
+  process.env.NODE_ENV === "production" ? "github" : "local";
 
-// GitHub repository details (required for GitHub mode)
-const GITHUB_REPO_OWNER = "REPO_OWNER";
-const GITHUB_REPO_NAME = "REPO_NAME";
+// GitHub repository details
+const GITHUB_REPO_OWNER = "gmtech-eu";
+const GITHUB_REPO_NAME = "gmtech";
 
 export default config({
   storage:
-    (KEYSTATIC_STORAGE_MODE as "github") === "github"
+    KEYSTATIC_STORAGE_MODE === "github"
       ? {
           kind: "github",
-          repo: `${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}`,
+          repo: {
+            owner: GITHUB_REPO_OWNER,
+            name: GITHUB_REPO_NAME,
+          },
         }
       : {
           kind: "local",
@@ -165,10 +169,12 @@ export default config({
             label: "Hero image",
             directory: "src/assets/images/hero",
             publicPath: "@assets/images/hero/",
+            validation: { isRequired: true },
           }),
           alt: fields.text({
             label: "Image alt text",
             defaultValue: "GMTEC Group",
+            validation: { isRequired: true },
           }),
         }),
       },
@@ -201,8 +207,8 @@ export default config({
                 true: fields.object({
                   src: fields.image({
                     label: "Feature image",
-                    directory: "src/assets/images",
-                    publicPath: "@assets/images/",
+                    directory: "src/assets/images/features",
+                    publicPath: "@assets/images/features/",
                   }),
                   alt: fields.text({
                     label: "Image alt text",

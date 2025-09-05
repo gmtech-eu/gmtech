@@ -1,80 +1,56 @@
 ---
-import { Image } from 'astro:assets';
-import { getImage } from 'astro:assets';
 import featureShowcaseData from '@data/featureShowcase.json';
-
-// Import default images as fallbacks
-import image_1 from '@images/analytics.webp';
-import image_2 from '@images/program_management.webp';
-import image_3 from '@images/cultural_bridge.webp';
+import { getImage } from 'astro:assets';
 
 const { title, subtitle, features: cmsFeatures } = featureShowcaseData;
 
+const images = import.meta.glob('/src/assets/**/*.{png,jpg,jpeg,gif,webp,avif}', {
+  eager: true,
+  import: 'default',
+});
 
-// Fallback images map
-const fallbackImages = {
-  'Business Development': image_1,
-  'Program Management': image_2,
-  'Cultural Bridge': image_3,
-};
+function resolveImage(imagePath: string): ImageMetadata | null {
+  if (!imagePath) return null;
 
-// CSS classes for layout (keeping original design)
+  const fullPath = imagePath.replace('@assets', '/src/assets');
+  return (images[fullPath] as ImageMetadata) ?? null;
+}
+
 const featureClasses = [
   'content-center border-b border-dashed border-slate-400 py-5 sm:col-span-2 sm:p-5',
   'content-center py-5 sm:row-start-2 sm:p-5 sm:py-10',
   'content-center border-t border-dashed border-slate-400 py-5 sm:row-span-2 sm:row-start-2 sm:border-l sm:border-t-0 sm:p-5 sm:text-right',
-  'content-center border-t border-dashed border-slate-400 py-5 sm:p-5'
+  'content-center border-t border-dashed border-slate-400 py-5 sm:p-5',
 ];
 
 const imageAlignments = [
   'mx-auto mt-10 rounded-xl shadow-lg sm:w-[75%]',
   'ml-auto mr-auto mt-10 w-[65%] rounded-xl shadow-lg sm:ml-0 sm:w-[45%]',
   'ml-auto mr-auto mt-10 w-[80%] rounded-xl shadow-lg sm:mr-0',
-  ''
+  '',
 ];
 
-// Process features from CMS with dynamic import like TechnologySlideshow
 const processedFeatures = await Promise.all(
   cmsFeatures.map(async (feature, index) => {
-    let processedImage = null;
-    let imageAlt = '';
-    
-    // Check if feature has image
-    if (feature.image.discriminant && feature.image.value) {
-      const imageSrc = feature.image.value.src;
-      imageAlt = feature.image.value.alt || '';
-      
-      if (imageSrc) {
-        try {
-          // Try dynamic import like TechnologySlideshow
-          const imageModule = await import(/* @vite-ignore */ imageSrc.replace('@assets', '/src/assets'));
-          const optimizedImage = await getImage({ src: imageModule.default, format: 'webp' });
-          processedImage = optimizedImage.src;
-        } catch (error) {
-          // Use fallback image if available
-          const fallback = fallbackImages[feature.title];
-          if (fallback) {
-            const optimizedFallback = await getImage({ src: fallback, format: 'webp' });
-            processedImage = optimizedFallback.src;
-          }
-        }
-      } else {
-        // No src provided, try fallback
-        const fallback = fallbackImages[feature.title];
-        if (fallback) {
-          const optimizedFallback = await getImage({ src: fallback, format: 'webp' });
-          processedImage = optimizedFallback.src;
-        }
-      }
+    const hasImage = feature.image.discriminant && feature.image.value?.src;
+    const keystaticImageSrc = hasImage ? feature.image.value?.src : null;
+    const imageAlt = feature.image.discriminant && feature.image.value ? feature.image.value.alt : '';
+
+    let optimizedImageUrl = null;
+    const keystaticImage = resolveImage(keystaticImageSrc ?? '');
+
+    if (keystaticImage) {
+      const optimized = await getImage({ src: keystaticImage, format: 'webp' });
+      optimizedImageUrl = optimized.src;
     }
-    
+
     return {
       ...feature,
       class: featureClasses[index] || 'content-center py-5 sm:p-5',
       alignment: imageAlignments[index] || '',
-      processedImage,
+      optimizedImageUrl,
       imageAlt,
-      moreFeatures: feature.additionalItems.discriminant ? feature.additionalItems.value : null
+      moreFeatures: feature.additionalItems.discriminant ? feature.additionalItems.value : null,
     };
   })
 );
@@ -103,12 +79,8 @@ const processedFeatures = await Promise.all(
             </p>
           )}
 
-          {feature.processedImage && (
-            <img 
-              class={`${feature.alignment || ''}`} 
-              src={feature.processedImage} 
-              alt={feature.imageAlt || ""} 
-            />
+          {feature.optimizedImageUrl && (
+            <img class={`${feature.alignment || ''}`} src={feature.optimizedImageUrl} alt={feature.imageAlt || ''} />
           )}
 
           {feature.moreFeatures && (

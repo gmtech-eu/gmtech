@@ -8,6 +8,7 @@
       "image": {
         "discriminant": true,
         "value": {
+          "src": "@assets/images/features/features/0/image/value/src.webp",
           "alt": "Business Development Analytics"
         }
       },
@@ -21,6 +22,7 @@
       "image": {
         "discriminant": true,
         "value": {
+          "src": "@assets/images/features/features/1/image/value/src.webp",
           "alt": "Program Management"
         }
       },
@@ -34,6 +36,7 @@
       "image": {
         "discriminant": true,
         "value": {
+          "src": "@assets/images/features/features/2/image/value/src.webp",
           "alt": "Cultural Bridge"
         }
       },

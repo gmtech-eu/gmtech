@@ -1,17 +1,24 @@
 ---
 import heroData from '@data/hero.json';
-import fallbackHeroImage from '@images/hero.webp';
 import Button from '@ui/Button.astro';
-import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
 
 const { title, subtitle, primaryCTA, secondaryCTA, image } = heroData;
 
-let heroImageSrc = fallbackHeroImage;
-if (image && 'src' in image && typeof image.src === 'string') {
-  const imagePath = image.src.replace('@assets', '/src/assets');
-  const imageModule = await import(/* @vite-ignore */ imagePath);
-  heroImageSrc = imageModule.default;
+const images = import.meta.glob('/src/assets/**/*.{png,jpg,jpeg,gif,webp,avif}', {
+  eager: true,
+  import: 'default',
+});
+
+function resolveImage(imagePath: string): ImageMetadata | null {
+  if (!imagePath) return null;
+
+  const fullPath = imagePath.replace('@assets', '/src/assets');
+  return (images[fullPath] as ImageMetadata) ?? null;
 }
+
+const keystaticImage = resolveImage(image?.src);
+const heroImageUrl = keystaticImage ? (await getImage({ src: keystaticImage, format: 'webp' })).src : null;
 ---
 
 {/* Hero Content */}
@@ -39,6 +46,6 @@ if (image && 'src' in image && typeof image.src === 'string') {
 
   {/* Right side - Image */}
   <div class="flex flex-1 justify-center lg:justify-end">
-    <Image src={heroImageSrc} alt={image?.alt || 'GMTEC Group'} width={1000} height={1000} class="rounded-3xl" />
+    <img src={heroImageUrl} alt={image?.alt || 'GMTEC Group'} width="1000" height="1000" class="rounded-3xl" />
   </div>
 </div>

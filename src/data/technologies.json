@@ -12,31 +12,31 @@
       ],
       "images": [
         {
-          "src": "@assets/images/slideshow/powertrain/1.webp",
+          "src": "@assets/images/technologies/0/images/0/src.webp",
           "alt": "Powertrain technology 1"
         },
         {
-          "src": "@assets/images/slideshow/powertrain/2.webp",
+          "src": "@assets/images/technologies/0/images/1/src.webp",
           "alt": "Powertrain technology 2"
         },
         {
-          "src": "@assets/images/slideshow/powertrain/3.webp",
+          "src": "@assets/images/technologies/0/images/2/src.webp",
           "alt": "Powertrain technology 3"
         },
         {
-          "src": "@assets/images/slideshow/powertrain/4.webp",
+          "src": "@assets/images/technologies/0/images/3/src.webp",
           "alt": "Powertrain technology 4"
         },
         {
-          "src": "@assets/images/slideshow/powertrain/5.webp",
+          "src": "@assets/images/technologies/0/images/4/src.webp",
           "alt": "Powertrain technology 5"
         },
         {
-          "src": "@assets/images/slideshow/powertrain/e-powertrain/1.webp",
+          "src": "@assets/images/technologies/0/images/5/src.webp",
           "alt": "E-Powertrain technology 1"
         },
         {
-          "src": "@assets/images/slideshow/powertrain/e-powertrain/2.webp",
+          "src": "@assets/images/technologies/0/images/6/src.webp",
           "alt": "E-Powertrain technology 2"
         }
       ]
@@ -53,39 +53,39 @@
       ],
       "images": [
         {
-          "src": "@assets/images/slideshow/chassis/1.webp",
+          "src": "@assets/images/technologies/1/images/0/src.webp",
           "alt": "Chassis technology 1"
         },
         {
-          "src": "@assets/images/slideshow/chassis/2.webp",
+          "src": "@assets/images/technologies/1/images/1/src.webp",
           "alt": "Chassis technology 2"
         },
         {
-          "src": "@assets/images/slideshow/chassis/3.webp",
+          "src": "@assets/images/technologies/1/images/2/src.webp",
           "alt": "Chassis technology 3"
         },
         {
-          "src": "@assets/images/slideshow/chassis/4.webp",
+          "src": "@assets/images/technologies/1/images/3/src.webp",
           "alt": "Chassis technology 4"
         },
         {
-          "src": "@assets/images/slideshow/chassis/5.webp",
+          "src": "@assets/images/technologies/1/images/4/src.webp",
           "alt": "Chassis technology 5"
         },
         {
-          "src": "@assets/images/slideshow/chassis/6.webp",
+          "src": "@assets/images/technologies/1/images/5/src.webp",
           "alt": "Chassis technology 6"
         },
         {
-          "src": "@assets/images/slideshow/chassis/7.webp",
+          "src": "@assets/images/technologies/1/images/6/src.webp",
           "alt": "Chassis technology 7"
         },
         {
-          "src": "@assets/images/slideshow/chassis/8.webp",
+          "src": "@assets/images/technologies/1/images/7/src.webp",
           "alt": "Chassis technology 8"
         },
         {
-          "src": "@assets/images/slideshow/chassis/9.webp",
+          "src": "@assets/images/technologies/1/images/8/src.webp",
           "alt": "Chassis technology 9"
         }
       ]
@@ -102,19 +102,19 @@
       ],
       "images": [
         {
-          "src": "@assets/images/slideshow/interior_parts/1.webp",
+          "src": "@assets/images/technologies/2/images/0/src.webp",
           "alt": "Interior parts 1"
         },
         {
-          "src": "@assets/images/slideshow/interior_parts/2.webp",
+          "src": "@assets/images/technologies/2/images/1/src.webp",
           "alt": "Interior parts 2"
         },
         {
-          "src": "@assets/images/slideshow/interior_parts/3.webp",
+          "src": "@assets/images/technologies/2/images/2/src.webp",
           "alt": "Interior parts 3"
         },
         {
-          "src": "@assets/images/slideshow/interior_parts/4.webp",
+          "src": "@assets/images/technologies/2/images/3/src.webp",
           "alt": "Interior parts 4"
         }
       ]
@@ -131,15 +131,15 @@
       ],
       "images": [
         {
-          "src": "@assets/images/slideshow/thermal_management/1.webp",
+          "src": "@assets/images/technologies/3/images/0/src.webp",
           "alt": "Thermal management 1"
         },
         {
-          "src": "@assets/images/slideshow/thermal_management/2.webp",
+          "src": "@assets/images/technologies/3/images/1/src.webp",
           "alt": "Thermal management 2"
         },
         {
-          "src": "@assets/images/slideshow/thermal_management/3.webp",
+          "src": "@assets/images/technologies/3/images/2/src.webp",
           "alt": "Thermal management 3"
         }
       ]

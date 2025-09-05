@@ -1,6 +1,6 @@
 ---
 import Icon from '@ui/icons/Icon.astro';
-const { companyName, title, address, email, linkedIn } = Astro.props;
+const { title, address, email, linkedIn } = Astro.props;
 ---
 
 <div>
@@ -10,22 +10,30 @@ const { companyName, title, address, email, linkedIn } = Astro.props;
       <Icon name="mapPin" />
       <span>{address}</span>
     </li>
-    {email && (
-      <li class="flex items-center gap-x-2">
-        <Icon name="email" />
-        <a href={`mailto:${email.address}`} class="transition-colors duration-300 hover:text-slate-500">{email.linkText}</a>
-      </li>
-    )}
-    {linkedIn && (
-      <li class="flex items-center gap-x-2">
-        <Icon name="linkedin" />
-        <a
-          href={linkedIn.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="transition-colors duration-300 hover:text-slate-500">{linkedIn.linkText}</a
-        >
-      </li>
-    )}
+    {
+      email && (
+        <li class="flex items-center gap-x-2">
+          <Icon name="email" />
+          <a href={`mailto:${email.address}`} class="transition-colors duration-300 hover:text-slate-500">
+            {email.linkText}
+          </a>
+        </li>
+      )
+    }
+    {
+      linkedIn && (
+        <li class="flex items-center gap-x-2">
+          <Icon name="linkedin" />
+          <a
+            href={linkedIn.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="transition-colors duration-300 hover:text-slate-500"
+          >
+            {linkedIn.linkText}
+          </a>
+        </li>
+      )
+    }
   </ul>
 </div>

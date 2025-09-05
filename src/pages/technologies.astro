@@ -1,47 +1,55 @@
 ---
 import TechnologySlideshow from '@common/TechnologySlideshow.svelte';
-import BaseLayout from '@layout/BaseLayout.astro';
-import Icon from '@ui/icons/Icon.astro';
-import type { Thing, WithContext } from 'schema-dts';
-
-// Import CMS data
-import technologiesHeroData from '@data/technologiesHero.json';
 import technologiesListData from '@data/technologies.json';
 import technologiesCTAData from '@data/technologiesCTA.json';
+import technologiesHeroData from '@data/technologiesHero.json';
+import BaseLayout from '@layout/BaseLayout.astro';
+import Icon from '@ui/icons/Icon.astro';
 import { getImage } from 'astro:assets';
+import type { Thing, WithContext } from 'schema-dts';
 
-// Process images from CMS paths
+const images = import.meta.glob('/src/assets/**/*.{png,jpg,jpeg,gif,webp,avif}', { eager: true });
+
+function resolveImage(imagePath: string): ImageMetadata | null {
+  if (!imagePath) return null;
+  const fullPath = imagePath.replace('@assets', '/src/assets');
+  const resolved = images[fullPath];
+  return (resolved as ImageMetadata) ?? null;
+}
+
 const processedTechnologies = await Promise.all(
   technologiesListData.technologies.map(async (tech) => {
-    const processedImages = await Promise.all(
-      tech.images.map(async (img) => {
+    const processedImages = [];
+
+    for (const img of tech.images) {
+      if (!img.src) continue;
+
+      const keystaticImage = resolveImage(img.src);
+
+      if (keystaticImage && keystaticImage.src) {
         try {
-          // Dynamically import the image
-          const imageModule = await import(/* @vite-ignore */ img.src.replace('@assets', '/src/assets'));
-          const optimizedImage = await getImage({ src: imageModule.default, format: 'webp' });
-          return {
-            src: optimizedImage.src,
-            alt: img.alt
-          };
+          const optimized = await getImage({ src: keystaticImage, format: 'webp' });
+          processedImages.push({
+            src: optimized.src,
+            alt: img.alt ?? '',
+          });
         } catch (error) {
-          console.error(`Failed to load image: ${img.src}`, error);
-          return img; // Return original if import fails
+          console.error(`Failed to process image: ${img.src}`, error);
         }
-      })
-    );
-    
+      }
+    }
+
     return {
       ...tech,
-      images: processedImages
+      images: processedImages,
     };
   })
 );
 
-// Use processed data
 const technologiesData = {
   title: technologiesHeroData.title,
   description: technologiesHeroData.description,
-  technologies: processedTechnologies
+  technologies: processedTechnologies,
 };
 
 const ctaData = technologiesCTAData;
