@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
 import featureShowcaseData from '@data/featureShowcase.json';
 
 // Import default images as fallbacks
@@ -9,11 +10,12 @@ import image_3 from '@images/cultural_bridge.webp';
 
 const { title, subtitle, features: cmsFeatures } = featureShowcaseData;
 
-// Map to associate default images
-const imageMap: Record<string, any> = {
-  '@images/analytics.webp': image_1,
-  '@images/program_management.webp': image_2,
-  '@images/cultural_bridge.webp': image_3,
+
+// Fallback images map
+const fallbackImages = {
+  'Business Development': image_1,
+  'Program Management': image_2,
+  'Cultural Bridge': image_3,
 };
 
 // CSS classes for layout (keeping original design)
@@ -31,14 +33,51 @@ const imageAlignments = [
   ''
 ];
 
-// Process features from CMS
-const processedFeatures = cmsFeatures.map((feature, index) => ({
-  ...feature,
-  class: featureClasses[index] || 'content-center py-5 sm:p-5',
-  alignment: imageAlignments[index] || '',
-  processedImage: feature.image.discriminant && feature.image.value ? imageMap[feature.image.value.src] : null,
-  moreFeatures: feature.additionalItems.discriminant ? feature.additionalItems.value : null
-}));
+// Process features from CMS with dynamic import like TechnologySlideshow
+const processedFeatures = await Promise.all(
+  cmsFeatures.map(async (feature, index) => {
+    let processedImage = null;
+    let imageAlt = '';
+    
+    // Check if feature has image
+    if (feature.image.discriminant && feature.image.value) {
+      const imageSrc = feature.image.value.src;
+      imageAlt = feature.image.value.alt || '';
+      
+      if (imageSrc) {
+        try {
+          // Try dynamic import like TechnologySlideshow
+          const imageModule = await import(/* @vite-ignore */ imageSrc.replace('@assets', '/src/assets'));
+          const optimizedImage = await getImage({ src: imageModule.default, format: 'webp' });
+          processedImage = optimizedImage.src;
+        } catch (error) {
+          // Use fallback image if available
+          const fallback = fallbackImages[feature.title];
+          if (fallback) {
+            const optimizedFallback = await getImage({ src: fallback, format: 'webp' });
+            processedImage = optimizedFallback.src;
+          }
+        }
+      } else {
+        // No src provided, try fallback
+        const fallback = fallbackImages[feature.title];
+        if (fallback) {
+          const optimizedFallback = await getImage({ src: fallback, format: 'webp' });
+          processedImage = optimizedFallback.src;
+        }
+      }
+    }
+    
+    return {
+      ...feature,
+      class: featureClasses[index] || 'content-center py-5 sm:p-5',
+      alignment: imageAlignments[index] || '',
+      processedImage,
+      imageAlt,
+      moreFeatures: feature.additionalItems.discriminant ? feature.additionalItems.value : null
+    };
+  })
+);
 ---
 
 <div class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 md:py-14 lg:px-8 lg:py-20">
@@ -65,10 +104,10 @@ const processedFeatures = cmsFeatures.map((feature, index) => ({
           )}
 
           {feature.processedImage && (
-            <Image 
+            <img 
               class={`${feature.alignment || ''}`} 
               src={feature.processedImage} 
-              alt={feature.image.value?.alt || ""} 
+              alt={feature.imageAlt || ""} 
             />
           )}
 

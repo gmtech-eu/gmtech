@@ -8,13 +8,11 @@
       "image": {
         "discriminant": true,
         "value": {
-          "src": "@images/analytics.webp",
           "alt": "Business Development Analytics"
         }
       },
       "additionalItems": {
-        "discriminant": false,
-        "value": null
+        "discriminant": false
       }
     },
     {
@@ -23,13 +21,11 @@
       "image": {
         "discriminant": true,
         "value": {
-          "src": "@images/program_management.webp",
           "alt": "Program Management"
         }
       },
       "additionalItems": {
-        "discriminant": false,
-        "value": null
+        "discriminant": false
       }
     },
     {
@@ -38,21 +34,17 @@
       "image": {
         "discriminant": true,
         "value": {
-          "src": "@images/cultural_bridge.webp",
           "alt": "Cultural Bridge"
         }
       },
       "additionalItems": {
-        "discriminant": false,
-        "value": null
+        "discriminant": false
       }
     },
     {
       "title": "Our added value",
-      "description": "",
       "image": {
-        "discriminant": false,
-        "value": null
+        "discriminant": false
       },
       "additionalItems": {
         "discriminant": true,
