@@ -12,7 +12,7 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   // The `site` property specifies the base URL for your site.
   // Be sure to update this to your own domain (e.g., "https://yourdomain.com") before deploying.
-  site: "https://gmtech-lovat.vercel.app",
+  site: "https://gmtec.eu",
   prefetch: true,
   trailingSlash: "never",
   experimental: {
