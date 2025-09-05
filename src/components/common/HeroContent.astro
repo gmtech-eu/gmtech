@@ -1,12 +1,10 @@
 ---
-import heroImage from '@images/hero.webp';
 import Button from '@ui/Button.astro';
 import { Image } from 'astro:assets';
-const title = 'Expertise in automotive consulting since 2003';
-const subTitle =
-  'We have been committed and focused, supporting our Principals mainly in the French and Italian markets, facilitating the growth of their Sales.';
-const secondaryCTA = { text: 'Learn about our mission', href: '/about' };
-const primaryCTA = { text: 'Contact us', href: '/contact' };
+import heroData from '@data/hero.json';
+import heroImage from '@images/hero.webp';
+
+const { title, subtitle, primaryCTA, secondaryCTA, image } = heroData;
 ---
 
 {/* Hero Content */}
@@ -21,7 +19,7 @@ const primaryCTA = { text: 'Contact us', href: '/contact' };
 
     <div class="text-left">
       <p class="text-lg text-pretty text-slate-700">
-        {subTitle}
+        {subtitle}
       </p>
     </div>
 
@@ -34,6 +32,6 @@ const primaryCTA = { text: 'Contact us', href: '/contact' };
 
   {/* Right side - Image */}
   <div class="flex flex-1 justify-center lg:justify-end">
-    <Image src={heroImage} alt="GMTEC Group" width={1000} height={1000} class="rounded-3xl" />
+    <Image src={heroImage} alt={image.alt} width={1000} height={1000} class="rounded-3xl" />
   </div>
 </div>

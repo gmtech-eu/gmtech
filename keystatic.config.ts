@@ -109,6 +109,52 @@ export default config({
         }),
       },
     }),
+    hero: singleton({
+      label: "Hero Section",
+      path: "src/data/hero",
+      format: { data: "json" },
+      schema: {
+        title: fields.text({
+          label: "Main title",
+          defaultValue: "Expertise in automotive consulting since 2003"
+        }),
+        subtitle: fields.text({
+          label: "Subtitle/Description",
+          defaultValue: "We have been committed and focused, supporting our Principals mainly in the French and Italian markets, facilitating the growth of their Sales."
+        }),
+        primaryCTA: fields.object({
+          text: fields.text({ 
+            label: "Primary button text",
+            defaultValue: "Contact us"
+          }),
+          href: fields.text({ 
+            label: "Primary button URL",
+            defaultValue: "/contact"
+          }),
+        }),
+        secondaryCTA: fields.object({
+          text: fields.text({ 
+            label: "Secondary button text",
+            defaultValue: "Learn about our mission"
+          }),
+          href: fields.text({ 
+            label: "Secondary button URL",
+            defaultValue: "/about"
+          }),
+        }),
+        image: fields.object({
+          src: fields.image({
+            label: "Hero image",
+            directory: "src/assets/images",
+            publicPath: "@images/",
+          }),
+          alt: fields.text({ 
+            label: "Image alt text",
+            defaultValue: "GMTEC Group"
+          }),
+        }),
+      },
+    }),
   },
 
   collections: {},
