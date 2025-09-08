@@ -8,7 +8,10 @@ import Icon from '@ui/icons/Icon.astro';
 import { getImage } from 'astro:assets';
 import type { Thing, WithContext } from 'schema-dts';
 
-const images = import.meta.glob('/src/assets/**/*.{png,jpg,jpeg,gif,webp,avif}', { eager: true });
+const images = import.meta.glob('/src/assets/**/*.{png,jpg,jpeg,gif,webp,avif}', {
+  eager: true,
+  import: 'default',
+});
 
 function resolveImage(imagePath: string): ImageMetadata | null {
   if (!imagePath) return null;
