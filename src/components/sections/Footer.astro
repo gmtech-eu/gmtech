@@ -32,13 +32,15 @@ const { companyInfo, quickLinks, contactInfo, copyright } = footerData;
       <div class="md:col-span-1">
         <h3 class="font-semibold text-slate-700">{quickLinks.title}</h3>
         <ul class="mt-3 space-y-2 text-sm text-slate-600">
-          {quickLinks.links.map((link) => (
-            <li>
-              <a href={link.href} class="transition-colors duration-300 hover:text-slate-500">
-                {link.label}
-              </a>
-            </li>
-          ))}
+          {
+            quickLinks.links.map((link) => (
+              <li>
+                <a href={link.href} class="transition-colors duration-300 hover:text-slate-500">
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
 
@@ -55,15 +57,7 @@ const { companyInfo, quickLinks, contactInfo, copyright } = footerData;
       {/* Copyright and Crafted By Section */}
       <p class="text-sm text-slate-400/50">
         &copy; {copyrightYear}
-        {copyright.companyName} Crafted by{' '}
-        <a
-          href={`mailto:${copyright.craftedBy.email}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="font-medium underline underline-offset-2 ring-slate-400 outline-hidden transition duration-300 hover:text-slate-400 hover:decoration-dashed focus:outline-hidden focus-visible:ring-3"
-        >
-          {copyright.craftedBy.name}
-        </a>
+        {copyright.companyName}
       </p>
     </div>
   </div>

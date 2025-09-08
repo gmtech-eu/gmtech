@@ -103,16 +103,6 @@ export default config({
             label: "Company name for copyright",
             defaultValue: "GMTEC Group",
           }),
-          craftedBy: fields.object({
-            name: fields.text({
-              label: "Creator name",
-              defaultValue: "valentin berceaux",
-            }),
-            email: fields.text({
-              label: "Creator email",
-              defaultValue: "v.berceaux@gmail.com",
-            }),
-          }),
         }),
       },
     }),
