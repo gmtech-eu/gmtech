@@ -57,7 +57,7 @@
           "alt": "Chassis technology 1"
         },
         {
-          "src": "@assets/images/technologies/1/images/1/src.webp",
+          "src": "@assets/images/technologies/1/images/1/src.jpg",
           "alt": "Chassis technology 2"
         },
         {
@@ -65,7 +65,7 @@
           "alt": "Chassis technology 3"
         },
         {
-          "src": "@assets/images/technologies/1/images/3/src.webp",
+          "src": "@assets/images/technologies/1/images/3/src.jpg",
           "alt": "Chassis technology 4"
         },
         {
@@ -85,8 +85,8 @@
           "alt": "Chassis technology 8"
         },
         {
-          "src": "@assets/images/technologies/1/images/8/src.webp",
-          "alt": "Chassis technology 9"
+          "src": "@assets/images/technologies/1/images/8/src.png",
+          "alt": "Chassis Technology 7"
         }
       ]
     },
