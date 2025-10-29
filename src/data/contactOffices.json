@@ -4,14 +4,14 @@
       "id": "france",
       "office": "France Office",
       "address": "8 rue Boulitte - 75014 Paris",
-      "email": "contact@gmtec.eu",
+      "email": "paris.office@gmtec.eu",
       "avatarBackground": "5aaeae"
     },
     {
       "id": "italy",
       "office": "Italy Office",
       "address": "44 via Duchessa Jolanda - 10138 Torino",
-      "email": "contact@gmtec.eu",
+      "email": "turin.office@gmtec.eu",
       "avatarBackground": "087f7f"
     }
   ]
