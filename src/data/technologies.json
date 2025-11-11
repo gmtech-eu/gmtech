@@ -83,6 +83,14 @@
         {
           "src": "@assets/images/technologies/1/images/7/src.png",
           "alt": "Chassis Technology 7"
+        },
+        {
+          "src": "@assets/images/technologies/1/images/8/src.avif",
+          "alt": "Chassis technology 9"
+        },
+        {
+          "src": "@assets/images/technologies/1/images/9/src.jpg",
+          "alt": "Chassis technology 10 "
         }
       ]
     },
